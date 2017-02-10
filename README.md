@@ -19,14 +19,20 @@ npm install --save react-daum-postcode
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 ```
 
-```jsx
+```javascript
 import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
 
 class Postcode extends React.Component {
+
+  handleAddress = (data) => {
+    // do something..
+  }
+
   render() {
     return (
       <DaumPostcode
+        onComplete={this.handleAdrress}
         ...props
       />
     );
@@ -37,6 +43,7 @@ class Postcode extends React.Component {
 ## props
 
 - `onComplete` (필수) _[function]_ - 우편번호 검색이 끝났을 때 사용자가 선택한 정보를 받아올 콜백함수입니다.
+  - `function(addressData: object) => void` : 주소 데이터의 내용은 [다음 우편번호 서비스 가이드](http://postcode.map.daum.net/guide)를 참고해주세요.
 - `width` _[number or string]_ - 컴포넌트의 가로 길이입니다. 기본값: '100%'
 - `height` _[number or string]_ - 컴포넌트의 세로 길이입니다. 기본값: 400
 - `autoClose` _[bool]_ - 우편번호 검색이 끝났을 때 컴포넌트를 자동으로 닫을지 여부입니다. 기본값: false
