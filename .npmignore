@@ -1,0 +1,6 @@
+example
+.babelrc
+.eslint*
+.idea
+.npmignore
+webpack.*
