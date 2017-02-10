@@ -1,0 +1,10 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "react/forbid-prop-types": "off",
+    "react/no-unused-prop-types": "off"
+  },
+  "env": {
+    "es6": true
+  }
+}
