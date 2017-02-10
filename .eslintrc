@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "react/forbid-prop-types": "off",
+    "react/no-unused-prop-types": "off",
+    "import/no-extraneous-dependencies": "off" 
+  },
+  "ignore": [
+    "./example/*"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
+}

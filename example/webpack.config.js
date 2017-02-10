@@ -1,18 +1,18 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   entry: './example/index.jsx',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/'
+    publicPath: '/dist/',
   },
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader'
-      }
-    ]
-  }
+        loader: 'babel-loader',
+      },
+    ],
+  },
 };
