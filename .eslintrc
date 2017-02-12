@@ -1,17 +1,8 @@
 {
-  "extends": "airbnb",
-  "parser": "babel-eslint",
+  "extends": ["react-app", "airbnb-base"],
   "rules": {
-    "react/forbid-prop-types": "off",
-    "react/no-unused-prop-types": "off",
-    "import/no-extraneous-dependencies": "off" 
-  },
-  "ignore": [
-    "./example/*"
-  ],
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true
+    "import/no-extraneous-dependencies": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off"
   }
 }
