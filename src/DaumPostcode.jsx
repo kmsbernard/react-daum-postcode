@@ -20,21 +20,23 @@ class DaumPostcode extends React.Component {
   initiate = () => {
     const comp = this;
 
-    const Postcode = new daum.Postcode({
-      oncomplete: function oncomplete(data) {
-        comp.props.onComplete(data);
-        if (comp.props.autoClose) comp.setState({ display: 'none' });
-      },
-      onresize: function onresize(size) {
-        if (comp.props.autoResize) comp.setState({ height: size.height });
-      },
-      theme: comp.props.theme,
-      animation: comp.props.animation,
-      width: '100%',
-      height: '100%',
-    });
+    daum.postcode.load(() => {
+      const Postcode = new daum.Postcode({
+        oncomplete: function oncomplete(data) {
+          comp.props.onComplete(data);
+          if (comp.props.autoClose) comp.setState({ display: 'none' });
+        },
+        onresize: function onresize(size) {
+          if (comp.props.autoResize) comp.setState({ height: size.height });
+        },
+        theme: comp.props.theme,
+        animation: comp.props.animation,
+        width: '100%',
+        height: '100%',
+      });
 
-    Postcode.embed(this.wrap, { q: this.props.defaultQuery, autoClose: this.props.autoClose });
+      Postcode.embed(this.wrap, { q: this.props.defaultQuery, autoClose: this.props.autoClose });
+    });
   }
 
   render() {
