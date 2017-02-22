@@ -10,13 +10,13 @@ npm install --save react-daum-postcode
 
 ## 사용
 
-이 컴포넌트는 전역적으로 접근 가능한 `daum` 객체에 의존합니다.
+이 컴포넌트는 전역적으로 접근 가능한 `daum` 객체에 의존합니다. `autoload=false`로 필요한 스크립트를 동적으로 불러옵니다.
 ```html
 <!-- http 환경 -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script> 
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script> 
 
 <!-- https 환경 -->
-<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false"></script>
 ```
 
 ```javascript
