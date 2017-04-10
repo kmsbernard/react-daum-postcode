@@ -20,7 +20,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "react": "^15.4.2"
+    "prop-types": "^15.5.6",
+    "react": "^15.5.3"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -36,9 +37,9 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
-    "express": "^4.14.1",
-    "react-dom": "^15.4.2",
-    "webpack": "^2.2.1",
+    "express": "^4.15.2",
+    "react-dom": "^15.5.3",
+    "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1"
   }

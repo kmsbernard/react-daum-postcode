@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 const daum = global.daum;
 
@@ -37,7 +37,7 @@ class DaumPostcode extends React.Component {
 
       Postcode.embed(this.wrap, { q: this.props.defaultQuery, autoClose: this.props.autoClose });
     });
-  }
+  };
 
   render() {
     return (
@@ -55,15 +55,15 @@ class DaumPostcode extends React.Component {
 }
 
 DaumPostcode.propTypes = {
-  onComplete: React.PropTypes.func.isRequired,
-  width: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-  height: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
-  autoClose: React.PropTypes.bool,
-  autoResize: React.PropTypes.bool,
-  animation: React.PropTypes.bool,
-  style: React.PropTypes.object,
-  defaultQuery: React.PropTypes.string,
-  theme: React.PropTypes.object,
+  onComplete: PropTypes.func.isRequired,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  autoClose: PropTypes.bool,
+  autoResize: PropTypes.bool,
+  animation: PropTypes.bool,
+  style: PropTypes.object,
+  defaultQuery: PropTypes.string,
+  theme: PropTypes.object,
 };
 
 DaumPostcode.defaultProps = {
