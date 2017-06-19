@@ -10,7 +10,7 @@ npm install --save react-daum-postcode
 
 ## 사용
 
-이 컴포넌트는 전역적으로 접근 가능한 `daum` 객체에 의존합니다. `autoload=false`로 필요한 스크립트를 동적으로 불러옵니다.
+이 컴포넌트는 전역적으로 접근 가능한 `daum` 객체에 의존합니다. 사용하고자 하는 페이지에 아래 `<script>`코드를 삽입해주세요. `autoload=false`로 스크립트를 동적으로 불러올 수 있습니다.
 ```html
 <!-- http 환경 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script> 
@@ -29,7 +29,7 @@ class Postcode extends React.Component {
     let fullAddress = data.address;
     let extraAddress = ''; 
     
-    if (data.addressType === 'R') {.
+    if (data.addressType === 'R') {
       if (data.bname !== '') {
         extraAddress += data.bname;
       }
@@ -45,7 +45,7 @@ class Postcode extends React.Component {
   render() {
     return (
       <DaumPostcode
-        onComplete={this.handleAdrress}
+        onComplete={this.handleAddress}
         ...props
       />
     );
