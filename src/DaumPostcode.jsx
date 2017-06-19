@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const daum = global.daum;
 
 class DaumPostcode extends React.Component {
   constructor(props) {
@@ -14,14 +13,19 @@ class DaumPostcode extends React.Component {
   }
 
   componentDidMount() {
-    this.initiate();
+    try {
+      this.daum = global.daum;
+      this.initiate();
+    } catch (e) {
+      console.warn('[react-daum-postcode] Daum 주소 스크립트가 로드되지 않았습니다. 레포지터리의 README를 확인해주세요: https://github.com/kimminsik-bernard/react-daum-postcode');
+    }
   }
 
   initiate = () => {
     const comp = this;
 
-    daum.postcode.load(() => {
-      const Postcode = new daum.Postcode({
+    this.daum.postcode.load(() => {
+      const Postcode = new this.daum.Postcode({
         oncomplete: function oncomplete(data) {
           comp.props.onComplete(data);
           if (comp.props.autoClose) comp.setState({ display: 'none' });
