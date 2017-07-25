@@ -13,19 +13,20 @@ class DaumPostcode extends React.Component {
   }
 
   componentDidMount() {
-    try {
-      this.daum = global.daum;
-      this.initiate();
-    } catch (e) {
-      console.warn('[react-daum-postcode] Daum 주소 스크립트가 로드되지 않았습니다. 레포지터리의 README를 확인해주세요: https://github.com/kimminsik-bernard/react-daum-postcode');
-    }
+    this.loadScript();
+  }
+
+  loadScript = () => {
+    const script = document.createElement('script');
+    script.src = this.props.scriptUrl;
+    script.onload = () => this.initiate();
+    document.body.appendChild(script);
   }
 
   initiate = () => {
     const comp = this;
-
-    this.daum.postcode.load(() => {
-      const Postcode = new this.daum.Postcode({
+    window.daum.postcode.load(() => {
+      const Postcode = new window.daum.Postcode({
         oncomplete: function oncomplete(data) {
           comp.props.onComplete(data);
           if (comp.props.autoClose) comp.setState({ display: 'none' });
@@ -68,6 +69,7 @@ DaumPostcode.propTypes = {
   style: PropTypes.object,
   defaultQuery: PropTypes.string,
   theme: PropTypes.object,
+  scriptUrl: PropTypes.string,
 };
 
 DaumPostcode.defaultProps = {
@@ -79,6 +81,7 @@ DaumPostcode.defaultProps = {
   style: null,
   defaultQuery: null,
   theme: null,
+  scriptUrl: 'https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false',
 };
 
 export default DaumPostcode;
