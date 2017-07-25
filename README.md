@@ -10,15 +10,6 @@ npm install --save react-daum-postcode
 
 ## 사용
 
-이 컴포넌트는 전역적으로 접근 가능한 `daum` 객체에 의존합니다. 사용하고자 하는 페이지에 아래 `<script>`코드를 삽입해주세요. `autoload=false`로 스크립트를 동적으로 불러올 수 있습니다.
-```html
-<!-- http 환경 -->
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script> 
-
-<!-- https 환경 -->
-<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false"></script>
-```
-
 ```javascript
 import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
@@ -65,3 +56,4 @@ class Postcode extends React.Component {
 - `defaultQuery` _[string]_ - 우편번호 검색창에 미리 표시할 검색어입니다. 기본값: null
 - `theme` _[object]_ - 다음 우편번호 검색 모듈에 적용할 테마입니다. 테마의 설정은 [다음 우편번호 서비스 가이드](http://postcode.map.daum.net/guide)를 참고해주세요. 기본값: null
 - `style` _[object]_ - 우편번호 검색창을 감싸는 최상위 컴포넌트에 적용할 스타일입니다. 기본값: null
+- `scriptUrl` _[string]_ - 컴포넌트에서 사용할 다음 우편번호 스크립트 주소입니다. 기본값: 'https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false'
