@@ -13,18 +13,13 @@ class DaumPostcode extends React.Component {
   }
 
   componentDidMount() {
-    this.loadScript();
-  }
-
-  loadScript = () => {
     const script = document.createElement('script');
     script.src = this.props.scriptUrl;
-    script.onload = () => this.initiate();
+    script.onload = () => this.initiate(this);
     document.body.appendChild(script);
   }
 
-  initiate = () => {
-    const comp = this;
+  initiate = (comp) => {
     window.daum.postcode.load(() => {
       const Postcode = new window.daum.Postcode({
         oncomplete: function oncomplete(data) {
@@ -36,6 +31,14 @@ class DaumPostcode extends React.Component {
         },
         theme: comp.props.theme,
         animation: comp.props.animation,
+        autoMapping: comp.props.autoMapping,
+        shorthand: comp.props.shorthand,
+        pleaseReadGuide: comp.props.pleaseReadGuide,
+        pleaseReadGuideTimer: comp.props.pleaseReadGuideTimer,
+        maxSuggestItems: comp.props.maxSuggestItems,
+        showMoreHName: comp.props.showMoreHName,
+        hideMapBtn: comp.props.hideMapBtn,
+        hideEngBtn: comp.props.hideEngBtn,
         width: '100%',
         height: '100%',
       });
@@ -49,10 +52,10 @@ class DaumPostcode extends React.Component {
       <div
         ref={(div) => { this.wrap = div; }}
         style={{
-          ...this.props.style,
-          display: this.state.display,
           width: this.state.width,
           height: this.state.height,
+          display: this.state.display,
+          ...this.props.style,
         }}
       />
     );
@@ -66,6 +69,14 @@ DaumPostcode.propTypes = {
   autoClose: PropTypes.bool,
   autoResize: PropTypes.bool,
   animation: PropTypes.bool,
+  autoMapping: PropTypes.bool,
+  shorthand: PropTypes.bool,
+  pleaseReadGuide: PropTypes.number,
+  pleaseReadGuideTimer: PropTypes.number,
+  maxSuggestItems: PropTypes.number,
+  showMoreHName: PropTypes.bool,
+  hideMapBtn: PropTypes.bool,
+  hideEngBtn: PropTypes.bool,
   style: PropTypes.object,
   defaultQuery: PropTypes.string,
   theme: PropTypes.object,
@@ -78,6 +89,14 @@ DaumPostcode.defaultProps = {
   autoClose: false,
   autoResize: false,
   animation: false,
+  autoMapping: true,
+  shorthand: true,
+  pleaseReadGuide: 0,
+  pleaseReadGuideTimer: 1.5,
+  maxSuggestItems: 10,
+  showMoreHName: false,
+  hideMapBtn: false,
+  hideEngBtn: false,
   style: null,
   defaultQuery: null,
   theme: null,
