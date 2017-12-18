@@ -13,10 +13,15 @@ class DaumPostcode extends React.Component {
   }
 
   componentDidMount() {
-    const script = document.createElement('script');
-    script.src = this.props.scriptUrl;
-    script.onload = () => this.initiate(this);
-    document.body.appendChild(script);
+    let isExist  = !!document.getElementById('daum_postcode_script');
+
+    if(!isExist){
+      const script = document.createElement('script');
+      script.src = this.props.scriptUrl;
+      script.onload = () => this.initiate(this);
+      script.id = 'daum_postcode_script';
+      document.body.appendChild(script);
+    }
   }
 
   initiate = (comp) => {
