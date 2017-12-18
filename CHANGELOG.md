@@ -1,3 +1,7 @@
+### 1.4.1
+- 다음 우편주소 스크립트를 중복으로 생성하지 않도록 함 ([@ignocide](https://github.com/ignocide) in [#3](https://github.com/kimminsik-bernard/react-daum-postcode/pull/3))
+- React 버전을 16.2.0으로 올림
+
 ### 1.4.0
 
 - 다음 우편번호 생성자가 받을수 있는 모든 속성을 props를 통해 전달
