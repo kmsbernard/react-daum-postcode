@@ -13,9 +13,9 @@ class DaumPostcode extends React.Component {
   }
 
   componentDidMount() {
-    let isExist  = !!document.getElementById('daum_postcode_script');
+    const isExist = !!document.getElementById('daum_postcode_script');
 
-    if(!isExist){
+    if (!isExist) {
       const script = document.createElement('script');
       script.src = this.props.scriptUrl;
       script.onload = () => this.initiate(this);
