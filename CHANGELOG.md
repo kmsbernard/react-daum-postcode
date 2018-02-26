@@ -1,3 +1,6 @@
+### 1.4.2
+- 다음 우편주소 검색창이 여러번 반복해서 열릴수 있도록 함
+
 ### 1.4.1
 - 다음 우편주소 스크립트를 중복으로 생성하지 않도록 함 ([@ignocide](https://github.com/ignocide) in [#3](https://github.com/kimminsik-bernard/react-daum-postcode/pull/3))
 - React 버전을 16.2.0으로 올림
