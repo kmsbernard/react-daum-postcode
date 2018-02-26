@@ -21,7 +21,7 @@ class DaumPostcode extends React.Component {
       script.onload = () => this.initiate(this);
       script.id = 'daum_postcode_script';
       document.body.appendChild(script);
-    }
+    } else this.initiate(this);
   }
 
   initiate = (comp) => {
