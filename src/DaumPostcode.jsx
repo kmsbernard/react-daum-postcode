@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const defaultErrorMessage = (<p>현재 Daum 우편번호 서비스를 이용할 수 없습니다. 잠시 후 다시 시도해주세요.</p>);
 
 class DaumPostcode extends React.Component {
   constructor(props) {
@@ -9,17 +10,20 @@ class DaumPostcode extends React.Component {
       display: 'block',
       width: this.props.width,
       height: this.props.height,
+      error: false,
     };
   }
 
   componentDidMount() {
-    const isExist = !!document.getElementById('daum_postcode_script');
+    const scriptId = 'daum_postcode_script'
+    const isExist = !!document.getElementById(scriptId);
 
     if (!isExist) {
       const script = document.createElement('script');
       script.src = this.props.scriptUrl;
       script.onload = () => this.initiate(this);
-      script.id = 'daum_postcode_script';
+      script.onerror = (error) => this.handleError(error);
+      script.id = scriptId;
       document.body.appendChild(script);
     } else this.initiate(this);
   }
@@ -52,6 +56,11 @@ class DaumPostcode extends React.Component {
     });
   };
 
+  handleError = (error) => {
+    error.target.remove();
+    this.setState({ error: true });
+  };
+
   render() {
     return (
       <div
@@ -62,7 +71,9 @@ class DaumPostcode extends React.Component {
           display: this.state.display,
           ...this.props.style,
         }}
-      />
+      >
+        {this.state.error && this.props.errorMessage}
+      </div>
     );
   }
 }
@@ -86,6 +97,7 @@ DaumPostcode.propTypes = {
   defaultQuery: PropTypes.string,
   theme: PropTypes.object,
   scriptUrl: PropTypes.string,
+  errorMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 DaumPostcode.defaultProps = {
@@ -106,6 +118,7 @@ DaumPostcode.defaultProps = {
   defaultQuery: null,
   theme: null,
   scriptUrl: 'https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false',
+  errorMessage: defaultErrorMessage,
 };
 
 export default DaumPostcode;
