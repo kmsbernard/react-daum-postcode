@@ -9,6 +9,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kimminsik-bernard",
+  "contributors": [
+    {
+      "name": "Minsik Kim",
+      "url": "https://github.com/kimminsik-bernard"
+    },
+    {
+      "name": "Sungmin Kim",
+      "url": "https://github.com/ignocide"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kimminsik-bernard/react-daum-postcode.git"
@@ -27,7 +37,9 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
+    "babel-plugin-minify-simplify": "^0.3.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-minify": "^0.3.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.15.0",
