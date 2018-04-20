@@ -1,3 +1,7 @@
+### 1.6.0
+- React 버전을 16.3 으로 올림
+- `alwaysShowEngAddr`, `submitMode`, `useSuggest` 생성자 속성을 추가
+
 ### 1.5.0
 - Daum 우편번호 스크립트가 로드되지 않을때, 오류 메시지를 표시
 - 패키지 라이브러리를 빌드할 때 minify 적용
