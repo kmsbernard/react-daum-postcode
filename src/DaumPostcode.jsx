@@ -15,14 +15,14 @@ class DaumPostcode extends React.Component {
   }
 
   componentDidMount() {
-    const scriptId = 'daum_postcode_script'
+    const scriptId = 'daum_postcode_script';
     const isExist = !!document.getElementById(scriptId);
 
     if (!isExist) {
       const script = document.createElement('script');
       script.src = this.props.scriptUrl;
       script.onload = () => this.initiate(this);
-      script.onerror = (error) => this.handleError(error);
+      script.onerror = error => this.handleError(error);
       script.id = scriptId;
       document.body.appendChild(script);
     } else this.initiate(this);
@@ -48,6 +48,9 @@ class DaumPostcode extends React.Component {
         showMoreHName: comp.props.showMoreHName,
         hideMapBtn: comp.props.hideMapBtn,
         hideEngBtn: comp.props.hideEngBtn,
+        alwaysShowEngAddr: comp.props.alwaysShowEngAddr,
+        submitMode: comp.props.submitMode,
+        useSuggest: comp.props.useSuggest,
         width: '100%',
         height: '100%',
       });
@@ -93,6 +96,9 @@ DaumPostcode.propTypes = {
   showMoreHName: PropTypes.bool,
   hideMapBtn: PropTypes.bool,
   hideEngBtn: PropTypes.bool,
+  alwaysShowEngAddr: PropTypes.bool,
+  submitMode: PropTypes.bool,
+  useSuggest: PropTypes.bool,
   style: PropTypes.object,
   defaultQuery: PropTypes.string,
   theme: PropTypes.object,
@@ -114,6 +120,9 @@ DaumPostcode.defaultProps = {
   showMoreHName: false,
   hideMapBtn: false,
   hideEngBtn: false,
+  alwaysShowEngAddr: false,
+  submitMode: true,
+  useSuggest: true,
   style: null,
   defaultQuery: null,
   theme: null,
