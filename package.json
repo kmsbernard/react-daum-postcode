@@ -3,7 +3,7 @@
   "version": "1.6.0",
   "description": "React daum-postcode component",
   "main": "./lib/index.js",
-  "types": "./react-daum-postcode.d.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "build": "babel src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1"
