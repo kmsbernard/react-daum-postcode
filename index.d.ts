@@ -61,7 +61,7 @@ declare module "react-daum-postcode" {
 
   class DaumPostcode extends React.Component<DaumPostcodeProps, any> {}
 
-  export { DaumPostcode };
+  export { AddressData, DaumPostcodeProps, DaumPostcode };
 
   export default DaumPostcode;
 }
