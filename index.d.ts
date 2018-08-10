@@ -59,5 +59,7 @@ declare module "react-daum-postcode" {
     width?: number | string;
   }
 
-  export default class DaumPostcode extends React.Component<DaumPostcodeProps, any> {}
+  class DaumPostcode extends React.Component<DaumPostcodeProps, any> {}
+
+  export default DaumPostcode;
 }
