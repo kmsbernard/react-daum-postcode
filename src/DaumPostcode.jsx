@@ -38,21 +38,22 @@ class DaumPostcode extends React.Component {
         onresize: function onresize(size) {
           if (comp.props.autoResize) comp.setState({ height: size.height });
         },
-        theme: comp.props.theme,
+        alwaysShowEngAddr: comp.props.alwaysShowEngAddr,
         animation: comp.props.animation,
         autoMapping: comp.props.autoMapping,
-        shorthand: comp.props.shorthand,
+        autoResize: comp.props.autoResize,
+        height: comp.props.height,
+        hideEngBtn: comp.props.hideEngBtn,
+        hideMapBtn: comp.props.hideMapBtn,
+        maxSuggestItems: comp.props.maxSuggestItems,
         pleaseReadGuide: comp.props.pleaseReadGuide,
         pleaseReadGuideTimer: comp.props.pleaseReadGuideTimer,
-        maxSuggestItems: comp.props.maxSuggestItems,
+        shorthand: comp.props.shorthand,
         showMoreHName: comp.props.showMoreHName,
-        hideMapBtn: comp.props.hideMapBtn,
-        hideEngBtn: comp.props.hideEngBtn,
-        alwaysShowEngAddr: comp.props.alwaysShowEngAddr,
         submitMode: comp.props.submitMode,
+        theme: comp.props.theme,
         useSuggest: comp.props.useSuggest,
-        width: '100%',
-        height: '100%',
+        width: comp.props.width,
       });
 
       Postcode.embed(this.wrap, { q: this.props.defaultQuery, autoClose: this.props.autoClose });
@@ -65,6 +66,7 @@ class DaumPostcode extends React.Component {
   };
 
   render() {
+    const { style, ...rest } = this.props;
     return (
       <div
         ref={(div) => { this.wrap = div; }}
@@ -72,8 +74,9 @@ class DaumPostcode extends React.Component {
           width: this.state.width,
           height: this.state.height,
           display: this.state.display,
-          ...this.props.style,
+          ...style,
         }}
+        {...rest}
       >
         {this.state.error && this.props.errorMessage}
       </div>
@@ -83,27 +86,27 @@ class DaumPostcode extends React.Component {
 
 DaumPostcode.propTypes = {
   onComplete: PropTypes.func.isRequired,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  autoClose: PropTypes.bool,
-  autoResize: PropTypes.bool,
+  alwaysShowEngAddr: PropTypes.bool,
   animation: PropTypes.bool,
+  autoClose: PropTypes.bool,
   autoMapping: PropTypes.bool,
-  shorthand: PropTypes.bool,
+  autoResize: PropTypes.bool,
+  defaultQuery: PropTypes.string,
+  errorMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  hideEngBtn: PropTypes.bool,
+  hideMapBtn: PropTypes.bool,
+  maxSuggestItems: PropTypes.number,
   pleaseReadGuide: PropTypes.number,
   pleaseReadGuideTimer: PropTypes.number,
-  maxSuggestItems: PropTypes.number,
-  showMoreHName: PropTypes.bool,
-  hideMapBtn: PropTypes.bool,
-  hideEngBtn: PropTypes.bool,
-  alwaysShowEngAddr: PropTypes.bool,
-  submitMode: PropTypes.bool,
-  useSuggest: PropTypes.bool,
-  style: PropTypes.object,
-  defaultQuery: PropTypes.string,
-  theme: PropTypes.object,
   scriptUrl: PropTypes.string,
-  errorMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  shorthand: PropTypes.bool,
+  showMoreHName: PropTypes.bool,
+  style: PropTypes.object,
+  submitMode: PropTypes.bool,
+  theme: PropTypes.object,
+  useSuggest: PropTypes.bool,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 DaumPostcode.defaultProps = {
