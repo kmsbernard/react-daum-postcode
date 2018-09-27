@@ -66,7 +66,32 @@ class DaumPostcode extends React.Component {
   };
 
   render() {
-    const { style, ...rest } = this.props;
+    const {
+      style,
+      onComplete,
+      alwaysShowEngAddr,
+      animation,
+      autoClose,
+      autoMapping,
+      autoResize,
+      defaultQuery,
+      errorMessage,
+      height,
+      hideEngBtn,
+      hideMapBtn,
+      maxSuggestItems,
+      pleaseReadGuide,
+      pleaseReadGuideTimer,
+      scriptUrl,
+      shorthand,
+      showMoreHName,
+      submitMode,
+      theme,
+      useSuggest,
+      width,
+      ...rest
+    } = this.props;
+
     return (
       <div
         ref={(div) => { this.wrap = div; }}
