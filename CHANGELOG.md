@@ -1,3 +1,13 @@
+### 1.7.1
+- Daum Postcode 커스텀 props가 DOM으로 주입되는 문제 해결
+
+### 1.7.0
+- React 버전을 16.4로 올림
+- TypeScript 타입선언 파일을 추가
+  - `DaumPostcode`컴포넌트 타입
+  - 컴포넌트의 props인 `DaumPostcodeProps` 타입
+  - _onComplete_ props의 인자로 쓰이는 `AddressData` 타입
+
 ### 1.6.0
 - React 버전을 16.3 으로 올림
 - `alwaysShowEngAddr`, `submitMode`, `useSuggest` 생성자 속성을 추가
