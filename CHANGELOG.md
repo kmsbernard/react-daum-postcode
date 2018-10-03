@@ -1,3 +1,6 @@
+### 1.8.0
+- 구 우편번호를 검색 결과에서 제외하는 `zonecodeOnly` props 추가
+
 ### 1.7.1
 - Daum Postcode 커스텀 props가 DOM으로 주입되는 문제 해결
 
