@@ -1,3 +1,6 @@
+### 1.8.1
+- TypeScript 타입선언 업데이트
+
 ### 1.8.0
 - 구 우편번호를 검색 결과에서 제외하는 `zonecodeOnly` props 추가
 
