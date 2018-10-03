@@ -54,6 +54,7 @@ class DaumPostcode extends React.Component {
         theme: comp.props.theme,
         useSuggest: comp.props.useSuggest,
         width: comp.props.width,
+        zonecodeOnly: comp.props.zonecodeOnly,
       });
 
       Postcode.embed(this.wrap, { q: this.props.defaultQuery, autoClose: this.props.autoClose });
@@ -89,6 +90,7 @@ class DaumPostcode extends React.Component {
       theme,
       useSuggest,
       width,
+      zonecodeOnly,
       ...rest
     } = this.props;
 
@@ -132,30 +134,32 @@ DaumPostcode.propTypes = {
   theme: PropTypes.object,
   useSuggest: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  zonecodeOnly: PropTypes.bool,
 };
 
 DaumPostcode.defaultProps = {
-  width: '100%',
-  height: 400,
-  autoClose: false,
-  autoResize: false,
+  alwaysShowEngAddr: false,
   animation: false,
+  autoClose: false,
   autoMapping: true,
-  shorthand: true,
+  autoResize: false,
+  defaultQuery: null,
+  errorMessage: defaultErrorMessage,
+  height: 400,
+  hideEngBtn: false,
+  hideMapBtn: false,
+  maxSuggestItems: 10,
   pleaseReadGuide: 0,
   pleaseReadGuideTimer: 1.5,
-  maxSuggestItems: 10,
-  showMoreHName: false,
-  hideMapBtn: false,
-  hideEngBtn: false,
-  alwaysShowEngAddr: false,
-  submitMode: true,
-  useSuggest: true,
-  style: null,
-  defaultQuery: null,
-  theme: null,
   scriptUrl: 'https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false',
-  errorMessage: defaultErrorMessage,
+  shorthand: true,
+  showMoreHName: false,
+  style: null,
+  submitMode: true,
+  theme: null,
+  useSuggest: true,
+  width: '100%',
+  zonecodeOnly: false,
 };
 
 export default DaumPostcode;
