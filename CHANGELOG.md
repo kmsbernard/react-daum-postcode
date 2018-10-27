@@ -1,3 +1,6 @@
+### 1.8.2
+- 검색결과 TypeScript 타입에 `noSelected` 인자 추가
+
 ### 1.8.1
 - TypeScript 타입선언 업데이트
 
