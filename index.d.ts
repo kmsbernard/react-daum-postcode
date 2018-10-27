@@ -33,6 +33,7 @@ declare module "react-daum-postcode" {
     postcode1: string;
     postcode2: string;
     postcodeSeq: string;
+    noSelected: "Y" | "N";
   }
 
   type DaumPostcodeProps = {
