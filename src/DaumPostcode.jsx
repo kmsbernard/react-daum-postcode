@@ -1,115 +1,109 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 const defaultErrorMessage = (<p>현재 Daum 우편번호 서비스를 이용할 수 없습니다. 잠시 후 다시 시도해주세요.</p>);
 
-class DaumPostcode extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      display: 'block',
-      width: this.props.width,
-      height: this.props.height,
-      error: false,
-    };
-  }
+const DaumPostcode = (props) => {
+  const {
+    style,
+    onComplete,
+    alwaysShowEngAddr,
+    animation,
+    autoClose,
+    autoMapping,
+    autoResize,
+    defaultQuery,
+    errorMessage,
+    hideEngBtn,
+    hideMapBtn,
+    maxSuggestItems,
+    pleaseReadGuide,
+    pleaseReadGuideTimer,
+    scriptUrl,
+    shorthand,
+    showMoreHName,
+    submitMode,
+    theme,
+    useSuggest,
+    width,
+    zonecodeOnly,
+    ...rest
+  } = this.props;
 
-  componentDidMount() {
+  const [height, setHeight] = useState(props.height);
+  const [error, setError] = useState(false);
+  const [display, setDisplay] = useState('block');
+  const postcodeEl = useRef(null);
+
+  const initiate = () => {
+    window.daum.postcode.load(() => {
+      const Postcode = new window.daum.Postcode({
+        oncomplete: function oncomplete(data) {
+          onComplete(data);
+          if (autoClose) setDisplay('none');
+        },
+        onresize: function onresize(size) {
+          if (autoResize) setHeight(size.height);
+        },
+        alwaysShowEngAddr,
+        animation,
+        autoMapping,
+        autoResize,
+        height,
+        hideEngBtn,
+        hideMapBtn,
+        maxSuggestItems,
+        pleaseReadGuide,
+        pleaseReadGuideTimer,
+        shorthand,
+        showMoreHName,
+        submitMode,
+        theme,
+        useSuggest,
+        width,
+        zonecodeOnly,
+      });
+
+      Postcode.embed(postcodeEl, { q: defaultQuery, autoClose });
+    });
+  };
+
+  const handleError = (err) => {
+    err.target.remove();
+    setError(true);
+  };
+
+  useEffect(() => {
     const scriptId = 'daum_postcode_script';
     const isExist = !!document.getElementById(scriptId);
 
     if (!isExist) {
       const script = document.createElement('script');
-      script.src = this.props.scriptUrl;
-      script.onload = () => this.initiate(this);
-      script.onerror = error => this.handleError(error);
+      script.src = scriptUrl;
+      script.onload = () => initiate();
+      script.onerror = err => handleError(err);
       script.id = scriptId;
       document.body.appendChild(script);
-    } else this.initiate(this);
-  }
+    } else {
+      initiate();
+    }
+  }, []);
 
-  initiate = (comp) => {
-    window.daum.postcode.load(() => {
-      const Postcode = new window.daum.Postcode({
-        oncomplete: function oncomplete(data) {
-          comp.props.onComplete(data);
-          if (comp.props.autoClose) comp.setState({ display: 'none' });
-        },
-        onresize: function onresize(size) {
-          if (comp.props.autoResize) comp.setState({ height: size.height });
-        },
-        alwaysShowEngAddr: comp.props.alwaysShowEngAddr,
-        animation: comp.props.animation,
-        autoMapping: comp.props.autoMapping,
-        autoResize: comp.props.autoResize,
-        height: comp.props.height,
-        hideEngBtn: comp.props.hideEngBtn,
-        hideMapBtn: comp.props.hideMapBtn,
-        maxSuggestItems: comp.props.maxSuggestItems,
-        pleaseReadGuide: comp.props.pleaseReadGuide,
-        pleaseReadGuideTimer: comp.props.pleaseReadGuideTimer,
-        shorthand: comp.props.shorthand,
-        showMoreHName: comp.props.showMoreHName,
-        submitMode: comp.props.submitMode,
-        theme: comp.props.theme,
-        useSuggest: comp.props.useSuggest,
-        width: comp.props.width,
-        zonecodeOnly: comp.props.zonecodeOnly,
-      });
-
-      Postcode.embed(this.wrap, { q: this.props.defaultQuery, autoClose: this.props.autoClose });
-    });
-  };
-
-  handleError = (error) => {
-    error.target.remove();
-    this.setState({ error: true });
-  };
-
-  render() {
-    const {
-      style,
-      onComplete,
-      alwaysShowEngAddr,
-      animation,
-      autoClose,
-      autoMapping,
-      autoResize,
-      defaultQuery,
-      errorMessage,
-      height,
-      hideEngBtn,
-      hideMapBtn,
-      maxSuggestItems,
-      pleaseReadGuide,
-      pleaseReadGuideTimer,
-      scriptUrl,
-      shorthand,
-      showMoreHName,
-      submitMode,
-      theme,
-      useSuggest,
-      width,
-      zonecodeOnly,
-      ...rest
-    } = this.props;
-
-    return (
-      <div
-        ref={(div) => { this.wrap = div; }}
-        style={{
-          width: this.state.width,
-          height: this.state.height,
-          display: this.state.display,
-          ...style,
-        }}
-        {...rest}
-      >
-        {this.state.error && this.props.errorMessage}
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      ref={postcodeEl}
+      style={{
+        width,
+        height,
+        display,
+        ...style,
+      }}
+      {...rest}
+    >
+      {error && errorMessage}
+    </div>
+  );
+};
 
 DaumPostcode.propTypes = {
   onComplete: PropTypes.func.isRequired,
