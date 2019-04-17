@@ -40,10 +40,14 @@ const DaumPostcode = (props) => {
       const Postcode = new window.daum.Postcode({
         oncomplete: function oncomplete(data) {
           onComplete(data);
-          if (autoClose) setDisplay('none');
+          if (autoClose) {
+            setDisplay('none');
+          }
         },
         onresize: function onresize(size) {
-          if (autoResize) setHeight(size.height);
+          if (autoResize) {
+            setHeight(size.height);
+          }
         },
         alwaysShowEngAddr,
         animation,
@@ -80,8 +84,8 @@ const DaumPostcode = (props) => {
     if (!isExist) {
       const script = document.createElement('script');
       script.src = scriptUrl;
-      script.onload = () => initiate();
-      script.onerror = err => handleError(err);
+      script.onload = initiate;
+      script.onerror = handleError;
       script.id = scriptId;
       document.body.appendChild(script);
     } else {
