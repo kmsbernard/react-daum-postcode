@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 const defaultErrorMessage = (<p>현재 Daum 우편번호 서비스를 이용할 수 없습니다. 잠시 후 다시 시도해주세요.</p>);
@@ -26,51 +26,73 @@ function DaumPostcode(props) {
     theme,
     useSuggest,
     width,
+    height,
     zonecodeOnly,
     ...rest
   } = props;
 
-  const [height, setHeight] = useState(props.height);
+  const [compHeight, setHeight] = useState(props.height);
   const [error, setError] = useState(false);
   const [display, setDisplay] = useState('block');
   const postcodeEl = useRef(null);
 
-  const initiate = (refEl) => {
-    window.daum.postcode.load(() => {
-      const Postcode = new window.daum.Postcode({
-        oncomplete: function oncomplete(data) {
-          onComplete(data);
-          if (autoClose) {
-            setDisplay('none');
-          }
-        },
-        onresize: function onresize(size) {
-          if (autoResize) {
-            setHeight(size.height);
-          }
-        },
-        alwaysShowEngAddr,
-        animation,
-        autoMapping,
-        autoResize,
-        height,
-        hideEngBtn,
-        hideMapBtn,
-        maxSuggestItems,
-        pleaseReadGuide,
-        pleaseReadGuideTimer,
-        shorthand,
-        showMoreHName,
-        submitMode,
-        theme,
-        useSuggest,
-        width,
-        zonecodeOnly,
-      });
+  const initiate = useCallback(
+    (refEl) => {
+      window.daum.postcode.load(() => {
+        const Postcode = new window.daum.Postcode({
+          oncomplete: function oncomplete(data) {
+            onComplete(data);
+            if (autoClose) {
+              setDisplay('none');
+            }
+          },
+          onresize: function onresize(size) {
+            if (autoResize) {
+              setHeight(size.height);
+            }
+          },
+          alwaysShowEngAddr,
+          animation,
+          autoMapping,
+          autoResize,
+          height,
+          hideEngBtn,
+          hideMapBtn,
+          maxSuggestItems,
+          pleaseReadGuide,
+          pleaseReadGuideTimer,
+          shorthand,
+          showMoreHName,
+          submitMode,
+          theme,
+          useSuggest,
+          width,
+          zonecodeOnly,
+        });
 
-      Postcode.embed(refEl, { q: defaultQuery, autoClose });
-    });
-  };
+        Postcode.embed(refEl, { q: defaultQuery, autoClose });
+      });
+    },
+    [
+      alwaysShowEngAddr,
+      animation,
+      autoMapping,
+      autoResize,
+      height,
+      hideEngBtn,
+      hideMapBtn,
+      maxSuggestItems,
+      pleaseReadGuide,
+      pleaseReadGuideTimer,
+      shorthand,
+      showMoreHName,
+      submitMode,
+      theme,
+      useSuggest,
+      width,
+      zonecodeOnly,
+    ],
+  );
 
   const handleError = (err) => {
     err.target.remove();
@@ -91,14 +113,14 @@ function DaumPostcode(props) {
     } else {
       initiate(postcodeEl.current);
     }
-  }, postcodeEl.current);
+  }, [initiate, scriptUrl]);
 
   return (
     <div
       ref={postcodeEl}
       style={{
         width,
-        height,
+        height: compHeight,
         display,
         ...style,
       }}
