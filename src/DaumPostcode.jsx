@@ -35,7 +35,7 @@ const DaumPostcode = (props) => {
   const [display, setDisplay] = useState('block');
   const postcodeEl = useRef(null);
 
-  const initiate = () => {
+  const initiate = (refEl) => {
     window.daum.postcode.load(() => {
       const Postcode = new window.daum.Postcode({
         oncomplete: function oncomplete(data) {
@@ -68,7 +68,7 @@ const DaumPostcode = (props) => {
         zonecodeOnly,
       });
 
-      Postcode.embed(postcodeEl, { q: defaultQuery, autoClose });
+      Postcode.embed(refEl, { q: defaultQuery, autoClose });
     });
   };
 
@@ -84,14 +84,14 @@ const DaumPostcode = (props) => {
     if (!isExist) {
       const script = document.createElement('script');
       script.src = scriptUrl;
-      script.onload = initiate;
+      script.onload = () => initiate(postcodeEl.current);
       script.onerror = handleError;
       script.id = scriptId;
       document.body.appendChild(script);
     } else {
-      initiate();
+      initiate(postcodeEl.current);
     }
-  }, []);
+  }, postcodeEl.current);
 
   return (
     <div
