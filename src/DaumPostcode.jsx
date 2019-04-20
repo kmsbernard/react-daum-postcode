@@ -28,7 +28,7 @@ const DaumPostcode = (props) => {
     width,
     zonecodeOnly,
     ...rest
-  } = this.props;
+  } = props;
 
   const [height, setHeight] = useState(props.height);
   const [error, setError] = useState(false);
