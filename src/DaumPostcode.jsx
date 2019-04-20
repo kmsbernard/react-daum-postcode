@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const defaultErrorMessage = (<p>현재 Daum 우편번호 서비스를 이용할 수 없습니다. 잠시 후 다시 시도해주세요.</p>);
 
-const DaumPostcode = (props) => {
+function DaumPostcode(props) {
   const {
     style,
     onComplete,
@@ -107,7 +107,7 @@ const DaumPostcode = (props) => {
       {error && errorMessage}
     </div>
   );
-};
+}
 
 DaumPostcode.propTypes = {
   onComplete: PropTypes.func.isRequired,

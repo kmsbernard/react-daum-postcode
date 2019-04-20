@@ -3,6 +3,11 @@
   "rules": {
     "import/no-extraneous-dependencies": "off",
     "import/extensions": "off",
-    "import/no-unresolved": "off"
-  }
+    "import/no-unresolved": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "plugins": [
+    "react-hooks"
+  ]
 }
