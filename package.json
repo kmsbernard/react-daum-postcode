@@ -1,6 +1,6 @@
 {
   "name": "react-daum-postcode",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "React daum-postcode component",
   "main": "./lib/index.js",
   "types": "./index.d.ts",
