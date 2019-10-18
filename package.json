@@ -30,8 +30,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "react": "^16.8.6"
+    "prop-types": ">15.7.0",
+    "react": ">16.8.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
