@@ -38,40 +38,38 @@ function DaumPostcode(props) {
 
   const initiate = useCallback(
     (refEl) => {
-      window.daum.postcode.load(() => {
-        const Postcode = new window.daum.Postcode({
-          oncomplete: function oncomplete(data) {
-            onComplete(data);
-            if (autoClose) {
-              setDisplay('none');
-            }
-          },
-          onresize: function onresize(size) {
-            if (autoResize) {
-              setHeight(size.height);
-            }
-          },
-          alwaysShowEngAddr,
-          animation,
-          autoMapping,
-          autoResize,
-          height,
-          hideEngBtn,
-          hideMapBtn,
-          maxSuggestItems,
-          pleaseReadGuide,
-          pleaseReadGuideTimer,
-          shorthand,
-          showMoreHName,
-          submitMode,
-          theme,
-          useSuggest,
-          width,
-          zonecodeOnly,
-        });
-
-        Postcode.embed(refEl, { q: defaultQuery, autoClose });
+      const Postcode = new window.daum.Postcode({
+        oncomplete: function oncomplete(data) {
+          onComplete(data);
+          if (autoClose) {
+            setDisplay('none');
+          }
+        },
+        onresize: function onresize(size) {
+          if (autoResize) {
+            setHeight(size.height);
+          }
+        },
+        alwaysShowEngAddr,
+        animation,
+        autoMapping,
+        autoResize,
+        height,
+        hideEngBtn,
+        hideMapBtn,
+        maxSuggestItems,
+        pleaseReadGuide,
+        pleaseReadGuideTimer,
+        shorthand,
+        showMoreHName,
+        submitMode,
+        theme,
+        useSuggest,
+        width,
+        zonecodeOnly,
       });
+
+      Postcode.embed(refEl, { q: defaultQuery, autoClose });
     },
     [
       autoClose,
@@ -174,7 +172,7 @@ DaumPostcode.defaultProps = {
   maxSuggestItems: 10,
   pleaseReadGuide: 0,
   pleaseReadGuideTimer: 1.5,
-  scriptUrl: 'https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false',
+  scriptUrl: 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
   shorthand: true,
   showMoreHName: false,
   style: null,
