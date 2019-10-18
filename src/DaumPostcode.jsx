@@ -74,6 +74,9 @@ function DaumPostcode(props) {
       });
     },
     [
+      autoClose,
+      defaultQuery,
+      onComplete,
       alwaysShowEngAddr,
       animation,
       autoMapping,
