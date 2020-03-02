@@ -1,11 +1,5 @@
-### 1.9.0
-- `focusInput`, `focusContent` props 추가
-
-### 1.8.4
-- 누락된 `submitMode` props 타입을 추가
-
-### 1.8.3
-- 잘못 배포된 빌드 수정
+### > 1.8.3
+[Github 레포지터리의 릴리즈 기록을 참고해주세요](https://github.com/bernard-kms/react-daum-postcode/releases)
 
 ### 1.8.2
 - 검색결과 TypeScript 타입에 `noSelected` 인자 추가
