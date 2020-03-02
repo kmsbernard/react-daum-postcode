@@ -14,9 +14,8 @@ npm install --save react-daum-postcode
 import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
 
-class Postcode extends React.Component {
-
-  handleAddress = (data) => {
+const Postcode = () => {
+  const handleComplete = (data) => {
     let fullAddress = data.address;
     let extraAddress = ''; 
     
@@ -33,14 +32,12 @@ class Postcode extends React.Component {
     console.log(fullAddress);  // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
   }
 
-  render() {
-    return (
-      <DaumPostcode
-        onComplete={this.handleAddress}
-        ...props
-      />
-    );
-  }
+  return (
+    <DaumPostcode
+      onComplete={handleComplete}
+      { ...props }
+    />
+  );
 }
 ```
 
