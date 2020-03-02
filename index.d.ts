@@ -59,6 +59,7 @@ declare module "react-daum-postcode" {
     useSuggest?: boolean;
     width?: number | string;
     zonecodeOnly?: boolean;
+    submitMode?: boolean;
   }
 
   class DaumPostcode extends React.Component<DaumPostcodeProps, any> {}
