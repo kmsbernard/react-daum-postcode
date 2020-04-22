@@ -60,6 +60,8 @@ declare module "react-daum-postcode" {
     width?: number | string;
     zonecodeOnly?: boolean;
     submitMode?: boolean;
+    focusInput?: boolean,
+    focusContent?: boolean,
   }
 
   class DaumPostcode extends React.Component<DaumPostcodeProps, any> {}

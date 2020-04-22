@@ -55,6 +55,8 @@ class DaumPostcode extends React.Component {
         useSuggest: comp.props.useSuggest,
         width: comp.props.width,
         zonecodeOnly: comp.props.zonecodeOnly,
+        focusInput: comp.props.focusInput,
+        focusContent: comp.props.focusContent,
       });
 
       Postcode.embed(this.wrap, { q: this.props.defaultQuery, autoClose: this.props.autoClose });
@@ -91,6 +93,8 @@ class DaumPostcode extends React.Component {
       useSuggest,
       width,
       zonecodeOnly,
+      focusInput,
+      focusContent,
       ...rest
     } = this.props;
 
@@ -135,6 +139,8 @@ DaumPostcode.propTypes = {
   useSuggest: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   zonecodeOnly: PropTypes.bool,
+  focusInput: PropTypes.bool,
+  focusContent: PropTypes.bool,
 };
 
 DaumPostcode.defaultProps = {
@@ -160,6 +166,8 @@ DaumPostcode.defaultProps = {
   useSuggest: true,
   width: '100%',
   zonecodeOnly: false,
+  focusInput: true,
+  focusContent: true,
 };
 
 export default DaumPostcode;
