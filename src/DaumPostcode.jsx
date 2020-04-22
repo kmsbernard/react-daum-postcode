@@ -28,6 +28,8 @@ function DaumPostcode(props) {
     width,
     height,
     zonecodeOnly,
+    focusInput,
+    focusContent,
     ...rest
   } = props;
 
@@ -67,6 +69,8 @@ function DaumPostcode(props) {
         useSuggest,
         width,
         zonecodeOnly,
+        focusInput,
+        focusContent,
       });
 
       Postcode.embed(refEl, { q: defaultQuery, autoClose });
@@ -92,6 +96,8 @@ function DaumPostcode(props) {
       useSuggest,
       width,
       zonecodeOnly,
+      focusInput,
+      focusContent,
     ],
   );
 
@@ -156,6 +162,8 @@ DaumPostcode.propTypes = {
   useSuggest: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   zonecodeOnly: PropTypes.bool,
+  focusInput: PropTypes.bool,
+  focusContent: PropTypes.bool,
 };
 
 DaumPostcode.defaultProps = {
@@ -181,6 +189,8 @@ DaumPostcode.defaultProps = {
   useSuggest: true,
   width: '100%',
   zonecodeOnly: false,
+  focusInput: true,
+  focusContent: true,
 };
 
 export default DaumPostcode;
