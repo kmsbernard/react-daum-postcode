@@ -9,6 +9,7 @@ declare module "react-daum-postcode" {
     userSelectedType: "R" | "J";
     userLanguageType: "K" | "E";
     roadAddress: string;
+    roadAddressEnglish: string;
     jibunAddress: string;
     jibunAddressEnglish: string;
     autoRoadAddress: string;
