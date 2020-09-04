@@ -30,15 +30,17 @@ declare module "react-daum-postcode" {
     bname2: string;
     hname: string;
     query: string;
-    postcode: string;
-    postcode1: string;
-    postcode2: string;
-    postcodeSeq: string;
     noSelected: "Y" | "N";
+  }
+
+  type SearchData = {
+    q: string;
+    count: number;
   }
 
   type DaumPostcodeProps = {
     onComplete(data: AddressData): void;
+    onSearch(data: SearchData): void;
     alwaysShowEngAddr?: boolean;
     animation?: boolean;
     autoClose?: boolean;
@@ -59,7 +61,6 @@ declare module "react-daum-postcode" {
     theme?: object;
     useSuggest?: boolean;
     width?: number | string;
-    zonecodeOnly?: boolean;
     submitMode?: boolean;
     focusInput?: boolean,
     focusContent?: boolean,
