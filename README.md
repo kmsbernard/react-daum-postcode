@@ -45,6 +45,8 @@ const Postcode = () => {
 
 - `onComplete` (필수) _[function]_ - 우편번호 검색이 끝났을 때 사용자가 선택한 정보를 받아올 콜백함수입니다.
   - `function(data: object) => void` : 주소 데이터의 구성은 [Daum 우편번호 서비스 가이드](http://postcode.map.daum.net/guide)를 참고해주세요.
+- `onSearch` _[function]_ - 주소를 검색할 경우에 실행되는 콜백함수입니다.
+  - `function(data: object) => void` : 검색결과 정보의 구성은 [Daum 우편번호 서비스 가이드](http://postcode.map.daum.net/guide)를 참고해주세요.
 - `width` _[number or string]_ - 컴포넌트의 가로 길이입니다. 300이하는 무시됩니다. 기본값: `'100%'`
 - `height` _[number or string]_ - 컴포넌트의 세로 길이입니다. 400이하는 무시됩니다. 기본값: `400`
 - `autoClose` _[bool]_ - 우편번호 검색이 끝났을 때 컴포넌트를 자동으로 닫습니다. 기본값: `false`
