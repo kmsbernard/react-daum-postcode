@@ -72,6 +72,7 @@ class DaumPostcode extends React.Component {
     const {
       style,
       onComplete,
+      onSearch,
       alwaysShowEngAddr,
       animation,
       autoClose,
