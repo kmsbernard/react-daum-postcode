@@ -1,6 +1,6 @@
 {
   "name": "react-daum-postcode",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "React daum-postcode component",
   "main": "./lib/index.js",
   "types": "./index.d.ts",
@@ -21,6 +21,10 @@
     {
       "name": "jong-hui",
       "url": "https://github.com/jong-hui"
+    },
+    {
+      "name": "KimSeonghyeon",
+      "url": "https://github.com/seonghyeonkimm"
     }
   ],
   "repository": {
