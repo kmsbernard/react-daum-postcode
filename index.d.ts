@@ -40,7 +40,7 @@ declare module "react-daum-postcode" {
 
   type DaumPostcodeProps = {
     onComplete(data: AddressData): void;
-    onSearch(data: SearchData): void;
+    onSearch?(data: SearchData): void;
     alwaysShowEngAddr?: boolean;
     animation?: boolean;
     autoClose?: boolean;
