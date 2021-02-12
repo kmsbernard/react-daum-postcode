@@ -54,7 +54,7 @@ class DaumPostcode extends React.Component {
         submitMode: comp.props.submitMode,
         theme: comp.props.theme,
         useSuggest: comp.props.useSuggest,
-        width: comp.props.width,
+        width: '100%',
         focusInput: comp.props.focusInput,
         focusContent: comp.props.focusContent,
       });
