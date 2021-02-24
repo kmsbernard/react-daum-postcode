@@ -43,7 +43,7 @@
   "license": "MIT",
   "dependencies": {
     "prop-types": "^15.6.2",
-    "react": "^16.4.2"
+    "react": "^16.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.0",
@@ -61,7 +61,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
-    "react-dom": "^16.4.2",
+    "react-dom": "^16.13.1",
     "webpack": "^5.24.1"
   }
 }
