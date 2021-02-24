@@ -38,6 +38,18 @@ declare module "react-daum-postcode" {
     count: number;
   }
 
+  type ThemeProps = {
+    bgColor?: string;
+    searchBgColor?: string;
+    contentBgColor?: string;
+    pageBgColor?: string;
+    textColor?: string;
+    queryTextColor?: string;
+    postcodeTextColor?: string;
+    emphTextColor?: string;
+    outlineColor?: string;
+  }
+
   type DaumPostcodeProps = {
     onComplete(data: AddressData): void;
     onSearch?(data: SearchData): void;
@@ -57,18 +69,18 @@ declare module "react-daum-postcode" {
     scriptUrl?: string;
     shorthand?: boolean;
     showMoreHName?: boolean;
-    style?: object;
-    theme?: object;
+    style?: React.CSSProperties;
+    theme?: ThemeProps;
     useSuggest?: boolean;
     width?: number | string;
     submitMode?: boolean;
-    focusInput?: boolean,
-    focusContent?: boolean,
+    focusInput?: boolean;
+    focusContent?: boolean;
   }
 
   class DaumPostcode extends React.Component<DaumPostcodeProps, any> {}
 
-  export { AddressData, DaumPostcodeProps, DaumPostcode };
+  export { AddressData, SearchData, ThemeProps, DaumPostcodeProps, DaumPostcode };
 
   export default DaumPostcode;
 }
