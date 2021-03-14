@@ -43,7 +43,7 @@ class DaumPostcode extends React.Component {
         animation: comp.props.animation,
         autoMapping: comp.props.autoMapping,
         autoResize: comp.props.autoResize,
-        height: comp.props.height,
+        height: '100%',
         hideEngBtn: comp.props.hideEngBtn,
         hideMapBtn: comp.props.hideMapBtn,
         maxSuggestItems: comp.props.maxSuggestItems,
