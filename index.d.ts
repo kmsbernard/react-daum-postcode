@@ -1,13 +1,13 @@
-declare module "react-daum-postcode" {
-  import * as React from "react";
+declare module 'react-daum-postcode' {
+  import * as React from 'react';
 
   type AddressData = {
     zonecode: string;
     address: string;
     addressEnglish: string;
-    addressType: "R" | "J";
-    userSelectedType: "R" | "J";
-    userLanguageType: "K" | "E";
+    addressType: 'R' | 'J';
+    userSelectedType: 'R' | 'J';
+    userLanguageType: 'K' | 'E';
     roadAddress: string;
     roadAddressEnglish: string;
     jibunAddress: string;
@@ -18,7 +18,7 @@ declare module "react-daum-postcode" {
     autoJibunAddressEnglish: string;
     buildingCode: string;
     buildingName: string;
-    apartment: "Y" | "N"
+    apartment: 'Y' | 'N';
     sido: string;
     sigungu: string;
     sigunguCode: string;
@@ -30,13 +30,13 @@ declare module "react-daum-postcode" {
     bname2: string;
     hname: string;
     query: string;
-    noSelected: "Y" | "N";
-  }
+    noSelected: 'Y' | 'N';
+  };
 
   type SearchData = {
     q: string;
     count: number;
-  }
+  };
 
   type ThemeProps = {
     bgColor?: string;
@@ -48,7 +48,7 @@ declare module "react-daum-postcode" {
     postcodeTextColor?: string;
     emphTextColor?: string;
     outlineColor?: string;
-  }
+  };
 
   type DaumPostcodeProps = {
     onComplete(data: AddressData): void;
@@ -59,7 +59,7 @@ declare module "react-daum-postcode" {
     autoMapping?: boolean;
     autoResize?: boolean;
     defaultQuery?: string;
-    errorMessage?: React.ReactElement<any>
+    errorMessage?: React.ReactElement<any>;
     height?: number | string;
     hideEngBtn?: boolean;
     hideMapBtn?: boolean;
@@ -72,11 +72,12 @@ declare module "react-daum-postcode" {
     style?: React.CSSProperties;
     theme?: ThemeProps;
     useSuggest?: boolean;
+    useBannerLink?: boolean;
     width?: number | string;
     submitMode?: boolean;
     focusInput?: boolean;
     focusContent?: boolean;
-  }
+  };
 
   class DaumPostcode extends React.Component<DaumPostcodeProps, any> {}
 
