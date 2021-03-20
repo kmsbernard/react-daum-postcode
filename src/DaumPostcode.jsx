@@ -93,6 +93,7 @@ class DaumPostcode extends React.Component {
       submitMode,
       theme,
       useSuggest,
+      useBannerLink,
       width,
       zonecodeOnly,
       focusInput,
