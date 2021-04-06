@@ -10,6 +10,7 @@ class DaumPostcode extends React.Component {
       display: 'block',
       width: this.props.width,
       height: this.props.height,
+      position: this.props.position,
       error: false,
     };
   }
@@ -134,6 +135,7 @@ DaumPostcode.propTypes = {
   maxSuggestItems: PropTypes.number,
   pleaseReadGuide: PropTypes.number,
   pleaseReadGuideTimer: PropTypes.number,
+  position: PropTypes.string,
   scriptUrl: PropTypes.string,
   shorthand: PropTypes.bool,
   showMoreHName: PropTypes.bool,
@@ -172,6 +174,7 @@ DaumPostcode.defaultProps = {
   maxSuggestItems: 10,
   pleaseReadGuide: 0,
   pleaseReadGuideTimer: 1.5,
+  position: 'relative',
   scriptUrl: 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
   shorthand: true,
   showMoreHName: false,
