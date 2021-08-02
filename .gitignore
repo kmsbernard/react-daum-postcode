@@ -13,6 +13,7 @@
 # Production
 build
 dist
+lib
 
 # Created by https://www.gitignore.io/api/webstorm,node,windows,linux,macos
 
