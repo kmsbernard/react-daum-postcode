@@ -1,9 +1,11 @@
 {
   "parser": "@babel/eslint-parser",
-  "extends": ["react-app", "airbnb-base"],
-  "rules": {
-    "import/no-extraneous-dependencies": "off",
-    "import/extensions": "off",
-    "import/no-unresolved": "off"
-  }
+  "plugins": [
+    "@babel"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb"
+  ]
 }
