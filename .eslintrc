@@ -1,11 +1,13 @@
 {
   "parser": "@babel/eslint-parser",
   "plugins": [
-    "@babel"
+    "@babel",
+    "prettier"
   ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:prettier/recommended",
     "airbnb"
   ]
 }
