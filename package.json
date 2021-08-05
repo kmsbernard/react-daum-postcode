@@ -71,6 +71,7 @@
     "@babel/preset-env": "^7.14.9",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
+    "@types/react": "^17.0.15",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "concurrently": "^6.2.0",
