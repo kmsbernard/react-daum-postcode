@@ -9,7 +9,9 @@
     "index.d.ts"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "concurrently --kill-others \"yarn:build:*\"",
+    "build:babel": "babel src -d lib --extensions \".ts,.tsx\"",
+    "build:types": "tsc --declarationDir lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kimminsik-bernard",
@@ -71,6 +73,7 @@
     "@babel/preset-typescript": "^7.14.5",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
+    "concurrently": "^6.2.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
