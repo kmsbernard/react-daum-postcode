@@ -6,7 +6,9 @@ declare global {
         version: string;
         _validParam_: boolean;
       };
-      Postcode: Postcode;
+      Postcode: {
+        new (postcodeOptions: PostcodeOptions): Postcode;
+      };
     };
   }
 }
@@ -113,24 +115,29 @@ export interface EmbedOptions {
 }
 
 export interface Postcode {
-  constructor(postcodeOptions: PostcodeOptions): void;
   open(openOptions?: OpenOptions): void;
   embed(element: HTMLElement, embedOptions?: EmbedOptions): void;
 }
 
 const loadPostcode = (function () {
   const scriptId = 'daum_postcode_script';
-  return function (url: string): Promise<Postcode> {
+  return function (url: string): Promise<typeof window.daum.Postcode> {
     const isScriptExist = !!document.getElementById(scriptId);
     if (isScriptExist) return Promise.resolve(window.daum.Postcode);
 
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = url;
-      script.onload = () => resolve(window.daum.Postcode);
+      script.onload = () => {
+        try {
+          resolve(window.daum.Postcode);
+        } catch (e) {
+          reject(e);
+        }
+      };
       script.onerror = (error) => reject(error);
       script.id = scriptId;
-      document.appendChild(script);
+      document.body.appendChild(script);
     });
   };
 })();
