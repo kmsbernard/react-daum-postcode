@@ -25,7 +25,7 @@ const defaultStyle = {
   height: 400,
 };
 
-const defaultProps: Partial<DaumPostcodeProps> = {
+const defaultProps = {
   scriptUrl: 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
   errorMessage: defaultErrorMessage,
   autoClose: true,
