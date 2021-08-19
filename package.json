@@ -9,10 +9,9 @@
     "index.d.ts"
   ],
   "scripts": {
-    "build": "concurrently --kill-others \"yarn:build:*\"",
+    "build": "concurrently \"yarn:build:*\"",
     "build:babel": "babel src -d lib --extensions \".ts,.tsx\"",
-    "build:types": "tsc --declarationDir lib",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:types": "tsc --declarationDir lib"
   },
   "author": "kimminsik-bernard",
   "contributors": [
