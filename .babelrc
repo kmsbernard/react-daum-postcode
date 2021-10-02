@@ -1,4 +1,8 @@
 {
-	"presets": ["es2015", "stage-0", "react", "minify"],
-	"plugins": ["minify-simplify"]
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-typescript",
+    ["@babel/preset-env", { "targets": "defaults" }],
+    "babel-preset-minify"
+  ]
 }
