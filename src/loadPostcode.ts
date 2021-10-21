@@ -6,9 +6,7 @@ declare global {
         version: string;
         _validParam_: boolean;
       };
-      Postcode: {
-        new (postcodeOptions: PostcodeOptions): Postcode;
-      };
+      Postcode: PostcodeConstructor;
     };
   }
 }
@@ -119,25 +117,51 @@ export interface Postcode {
   embed(element: HTMLElement, embedOptions?: EmbedOptions): void;
 }
 
+export interface PostcodeConstructor {
+  new (postcodeOptions: PostcodeOptions): Postcode;
+}
+
+const promiseQueue = (function () {
+  const queue: Array<[(value: PostcodeConstructor) => void, (error: unknown) => void]> = [];
+  const enqueue = queue.push.bind(queue);
+  const dequeue = () => queue.shift() ?? [];
+  const resolveAll = (value: PostcodeConstructor) => {
+    while (queue.length) {
+      const [resolve] = dequeue();
+      resolve?.(value);
+    }
+  };
+  const rejectAll = (value: unknown) => {
+    while (queue.length) {
+      const [_, reject] = dequeue();
+      reject?.(value);
+    }
+  };
+  return { enqueue, resolveAll, rejectAll };
+})();
+
 const loadPostcode = (function () {
   const scriptId = 'daum_postcode_script';
   return function (url: string): Promise<typeof window.daum.Postcode> {
-    const isScriptExist = !!document.getElementById(scriptId);
-    if (isScriptExist) return Promise.resolve(window.daum.Postcode);
-
-    return new Promise((resolve, reject) => {
+    if (window.daum && window.daum.Postcode) {
+      return Promise.resolve(window.daum.Postcode);
+    }
+    if (!document.getElementById(scriptId)) {
       const script = document.createElement('script');
       script.src = url;
+      script.id = scriptId;
       script.onload = () => {
         try {
-          resolve(window.daum.Postcode);
+          promiseQueue.resolveAll(window.daum.Postcode);
         } catch (e) {
-          reject(e);
+          promiseQueue.rejectAll(e);
         }
       };
-      script.onerror = (error) => reject(error);
-      script.id = scriptId;
+      script.onerror = (error) => promiseQueue.rejectAll(error);
       document.body.appendChild(script);
+    }
+    return new Promise<PostcodeConstructor>((resolve, reject) => {
+      promiseQueue.enqueue([resolve, reject]);
     });
   };
 })();
