@@ -142,30 +142,29 @@ const promiseQueue = (function () {
 
 export const postcodeScriptUrl = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
 
-const loadPostcode = (function () {
-  const scriptId = 'daum_postcode_script';
-  return function (url: string = postcodeScriptUrl): Promise<typeof window.daum.Postcode> {
-    if (window.daum && window.daum.Postcode) {
-      return Promise.resolve(window.daum.Postcode);
-    }
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script');
-      script.src = url;
-      script.id = scriptId;
-      script.onload = () => {
-        try {
-          promiseQueue.resolveAll(window.daum.Postcode);
-        } catch (e) {
-          promiseQueue.rejectAll(e);
-        }
-      };
-      script.onerror = (error) => promiseQueue.rejectAll(error);
-      document.body.appendChild(script);
-    }
-    return new Promise<PostcodeConstructor>((resolve, reject) => {
-      promiseQueue.enqueue([resolve, reject]);
-    });
-  };
-})();
+const scriptId = 'daum_postcode_script';
+
+const loadPostcode = (url: string = postcodeScriptUrl): Promise<typeof window.daum.Postcode> => {
+  if (window.daum && window.daum.Postcode) {
+    return Promise.resolve(window.daum.Postcode);
+  }
+  if (!document.getElementById(scriptId)) {
+    const script = document.createElement('script');
+    script.src = url;
+    script.id = scriptId;
+    script.onload = () => {
+      try {
+        promiseQueue.resolveAll(window.daum.Postcode);
+      } catch (e) {
+        promiseQueue.rejectAll(e);
+      }
+    };
+    script.onerror = (error) => promiseQueue.rejectAll(error);
+    document.body.appendChild(script);
+  }
+  return new Promise<PostcodeConstructor>((resolve, reject) => {
+    promiseQueue.enqueue([resolve, reject]);
+  });
+};
 
 export default loadPostcode;
