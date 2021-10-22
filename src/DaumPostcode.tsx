@@ -1,5 +1,5 @@
 import React, { Component, createRef, CSSProperties } from 'react';
-import loadPostcode, { PostcodeOptions } from './loadPostcode';
+import loadPostcode, { postcodeScriptUrl, PostcodeOptions } from './loadPostcode';
 
 export interface DaumPostcodeProps extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> {
   onComplete?: PostcodeOptions['oncomplete'];
@@ -26,7 +26,7 @@ const defaultStyle = {
 };
 
 const defaultProps = {
-  scriptUrl: 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
+  scriptUrl: postcodeScriptUrl,
   errorMessage: defaultErrorMessage,
   autoClose: true,
 };

@@ -140,9 +140,11 @@ const promiseQueue = (function () {
   return { enqueue, resolveAll, rejectAll };
 })();
 
+export const postcodeScriptUrl = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+
 const loadPostcode = (function () {
   const scriptId = 'daum_postcode_script';
-  return function (url: string): Promise<typeof window.daum.Postcode> {
+  return function (url: string = postcodeScriptUrl): Promise<typeof window.daum.Postcode> {
     if (window.daum && window.daum.Postcode) {
       return Promise.resolve(window.daum.Postcode);
     }
