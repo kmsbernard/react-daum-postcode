@@ -73,7 +73,7 @@ export interface Theme {
   outlineColor?: string;
 }
 
-export interface PostcodeOptions {
+export interface ConstructorOptions {
   oncomplete?: (address: Address) => void;
   onresize?: (size: Size) => void;
   onclose?: (state: State) => void;
@@ -118,7 +118,7 @@ export interface Postcode {
 }
 
 export interface PostcodeConstructor {
-  new (postcodeOptions: PostcodeOptions): Postcode;
+  new (constructorOptions: ConstructorOptions): Postcode;
 }
 
 const promiseQueue = (function () {

@@ -1,13 +1,13 @@
 import { useCallback, useEffect } from 'react';
 
-import loadPostcode, { PostcodeOptions, OpenOptions, postcodeScriptUrl } from './loadPostcode';
+import loadPostcode, { ConstructorOptions, OpenOptions, postcodeScriptUrl } from './loadPostcode';
 
-type PopupOptions = Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> &
+type PopupOptions = Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> &
   OpenOptions & {
-    onComplete?: PostcodeOptions['oncomplete'];
-    onResize?: PostcodeOptions['onresize'];
-    onClose?: PostcodeOptions['onclose'];
-    onSearch?: PostcodeOptions['onsearch'];
+    onComplete?: ConstructorOptions['oncomplete'];
+    onResize?: ConstructorOptions['onresize'];
+    onClose?: ConstructorOptions['onclose'];
+    onSearch?: ConstructorOptions['onsearch'];
     onError?: (error: Error) => void;
   };
 

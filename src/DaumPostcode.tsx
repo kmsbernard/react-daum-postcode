@@ -1,11 +1,11 @@
 import React, { Component, createRef, CSSProperties } from 'react';
-import loadPostcode, { postcodeScriptUrl, PostcodeOptions } from './loadPostcode';
+import loadPostcode, { postcodeScriptUrl, ConstructorOptions } from './loadPostcode';
 
-export interface DaumPostcodeProps extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> {
-  onComplete?: PostcodeOptions['oncomplete'];
-  onResize?: PostcodeOptions['onresize'];
-  onClose?: PostcodeOptions['onclose'];
-  onSearch?: PostcodeOptions['onsearch'];
+export interface DaumPostcodeProps extends Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> {
+  onComplete?: ConstructorOptions['oncomplete'];
+  onResize?: ConstructorOptions['onresize'];
+  onClose?: ConstructorOptions['onclose'];
+  onSearch?: ConstructorOptions['onsearch'];
   className?: string;
   style?: CSSProperties;
   defaultQuery?: string;
