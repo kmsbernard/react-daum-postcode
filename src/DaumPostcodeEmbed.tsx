@@ -1,7 +1,7 @@
 import React, { Component, createRef, CSSProperties } from 'react';
 import loadPostcode, { postcodeScriptUrl, ConstructorOptions } from './loadPostcode';
 
-export interface DaumPostcodeProps extends Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> {
+export interface DaumPostcodeEmbedProps extends Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> {
   onComplete?: ConstructorOptions['oncomplete'];
   onResize?: ConstructorOptions['onresize'];
   onClose?: ConstructorOptions['onclose'];
@@ -31,7 +31,7 @@ const defaultProps = {
   autoClose: true,
 };
 
-class DaumPostcode extends Component<DaumPostcodeProps, State> {
+class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
   static defaultProps = defaultProps;
 
   wrap = createRef<HTMLDivElement>();
@@ -98,4 +98,4 @@ class DaumPostcode extends Component<DaumPostcodeProps, State> {
   }
 }
 
-export default DaumPostcode;
+export default DaumPostcodeEmbed;

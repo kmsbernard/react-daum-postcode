@@ -1,7 +1,7 @@
-import DaumPostcode, { DaumPostcodeProps } from './DaumPostcode';
+import DaumPostcodeEmbed, { DaumPostcodeEmbedProps } from './DaumPostcodeEmbed';
 import useDaumPostcodePopup from './useDaumPostcodePopup';
 import { Address, Search, State } from './loadPostcode';
 
-export type { DaumPostcodeProps, Address, Search, State };
-export { DaumPostcode, useDaumPostcodePopup };
-export default DaumPostcode;
+export type { DaumPostcodeEmbedProps, Address, Search, State };
+export { DaumPostcodeEmbed, useDaumPostcodePopup };
+export default DaumPostcodeEmbed;
