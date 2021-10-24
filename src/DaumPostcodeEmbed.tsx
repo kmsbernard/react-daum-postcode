@@ -1,7 +1,8 @@
 import React, { Component, createRef, CSSProperties } from 'react';
 import loadPostcode, { postcodeScriptUrl, ConstructorOptions } from './loadPostcode';
 
-export interface DaumPostcodeEmbedProps extends Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> {
+export interface DaumPostcodeEmbedProps
+  extends Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch' | 'width' | 'height'> {
   onComplete?: ConstructorOptions['oncomplete'];
   onResize?: ConstructorOptions['onresize'];
   onClose?: ConstructorOptions['onclose'];
@@ -50,21 +51,8 @@ class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
 
   initiate = (Postcode: typeof window.daum.Postcode) => {
     if (!this.wrap.current) return;
-    const {
-      scriptUrl,
-      className,
-      style,
-      defaultQuery,
-      autoClose,
-      errorMessage,
-      width,
-      height,
-      onComplete,
-      onClose,
-      onResize,
-      onSearch,
-      ...options
-    } = this.props;
+    const { scriptUrl, className, style, defaultQuery, autoClose, errorMessage, onComplete, onClose, onResize, onSearch, ...options } =
+      this.props;
 
     const postcode = new Postcode({
       ...options,
