@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 
 import loadPostcode, { ConstructorOptions, OpenOptions, postcodeScriptUrl } from './loadPostcode';
 
-type PopupOptions = Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> &
+export type PopupOptions = Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> &
   OpenOptions & {
     onComplete?: ConstructorOptions['oncomplete'];
     onResize?: ConstructorOptions['onresize'];
