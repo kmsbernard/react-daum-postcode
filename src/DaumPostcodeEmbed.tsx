@@ -14,6 +14,13 @@ export interface DaumPostcodeEmbedProps
   scriptUrl?: string;
   autoClose?: boolean;
 }
+/**
+ * @deprecated
+ * prop-type is renamed to 'DaumPostcodeEmbedProps'.
+ * import 'DaumPostcodeEmbedProps' instead of 'DaumPostcodeProps'.
+ * it will be remove next version.
+ */
+export type DaumPostcodeProps = DaumPostcodeEmbedProps;
 
 interface State {
   hasError: boolean;
