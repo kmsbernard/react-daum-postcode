@@ -22,9 +22,8 @@ function useDaumPostcodePopup(scriptUrl = postcodeScriptUrl) {
       const { defaultQuery, left, top, popupKey, popupTitle, autoClose, onComplete, onResize, onClose, onSearch, onError, ...others } = {
         ...options,
       };
-      if (!scriptUrl) return;
 
-      loadPostcode(scriptUrl)
+      return loadPostcode(scriptUrl)
         .then((Postcode) => {
           const postcode = new Postcode({
             ...others,
