@@ -84,6 +84,8 @@ export interface ConstructorOptions {
   focusInput?: boolean;
   focusContent?: boolean;
   autoMapping?: boolean;
+  autoMappingRoad?: boolean;
+  autoMappingJibun?: boolean;
   shorthand?: boolean;
   pleaseReadGuide?: number;
   pleaseReadGuideTimer?: number;
