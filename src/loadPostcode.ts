@@ -121,11 +121,12 @@ export interface Postcode {
 
 const loadPostcode = (function () {
   const scriptId = 'daum_postcode_script';
-  return function (url: string): Promise<typeof window.daum.Postcode> {
-    const isScriptExist = !!document.getElementById(scriptId);
-    if (isScriptExist) return Promise.resolve(window.daum.Postcode);
+  let promise: Promise<typeof window.daum.Postcode> | null = null;
 
-    return new Promise((resolve, reject) => {
+  return function (url: string): Promise<typeof window.daum.Postcode> {
+    if( promise ) return promise;
+
+    promise = new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = url;
       script.onload = () => {
@@ -138,7 +139,9 @@ const loadPostcode = (function () {
       script.onerror = (error) => reject(error);
       script.id = scriptId;
       document.body.appendChild(script);
-    });
+    })
+
+    return promise;
   };
 })();
 
