@@ -82,7 +82,8 @@ class DaumPostcode extends Component<DaumPostcodeProps, State> {
     postcode.embed(this.wrap.current, { q: defaultQuery, autoClose: autoClose });
   };
 
-  onError = () => {
+  onError = (e: unknown) => {
+    console.error(e);
     this.setState({ hasError: true });
   };
 
