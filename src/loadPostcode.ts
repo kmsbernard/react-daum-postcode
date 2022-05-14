@@ -1,14 +1,12 @@
 declare global {
   interface Window {
-    daum: {
-      postcode: {
+    daum?: {
+      postcode?: {
         load: (fn: () => void) => void;
         version: string;
         _validParam_: boolean;
       };
-      Postcode: {
-        new (postcodeOptions: PostcodeOptions): Postcode;
-      };
+      Postcode?: PostcodeConstructor;
     };
   }
 }
@@ -114,6 +112,10 @@ export interface EmbedOptions {
   autoClose?: boolean;
 }
 
+export interface PostcodeConstructor {
+  new (postcodeOptions: PostcodeOptions): Postcode;
+}
+
 export interface Postcode {
   open(openOptions?: OpenOptions): void;
   embed(element: HTMLElement, embedOptions?: EmbedOptions): void;
@@ -121,20 +123,19 @@ export interface Postcode {
 
 const loadPostcode = (function () {
   const scriptId = 'daum_postcode_script';
-  let promise: Promise<typeof window.daum.Postcode> | null = null;
+  let promise: Promise<PostcodeConstructor> | null = null;
 
-  return function (url: string): Promise<typeof window.daum.Postcode> {
+  return function (url: string): Promise<PostcodeConstructor> {
     if( promise ) return promise;
 
     promise = new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = url;
       script.onload = () => {
-        try {
-          resolve(window.daum.Postcode);
-        } catch (e) {
-          reject(e);
+        if( window?.daum?.Postcode ) {
+          return resolve(window.daum.Postcode);
         }
+        reject(new Error('Script is loaded successfully, but cannot find Postcode module. Check your scriptURL property.'))
       };
       script.onerror = (error) => reject(error);
       script.id = scriptId;
