@@ -1,5 +1,5 @@
 import React, { Component, createRef, CSSProperties } from 'react';
-import loadPostcode, { PostcodeOptions } from './loadPostcode';
+import loadPostcode, { PostcodeConstructor, PostcodeOptions } from './loadPostcode';
 
 export interface DaumPostcodeProps extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> {
   onComplete?: PostcodeOptions['oncomplete'];
@@ -48,7 +48,7 @@ class DaumPostcode extends Component<DaumPostcodeProps, State> {
     loadPostcode(scriptUrl).then(initiate).catch(onError);
   }
 
-  initiate = (Postcode: typeof window.daum.Postcode) => {
+  initiate = (Postcode: PostcodeConstructor) => {
     if (!this.wrap.current) return;
     const {
       scriptUrl,
@@ -82,7 +82,8 @@ class DaumPostcode extends Component<DaumPostcodeProps, State> {
     postcode.embed(this.wrap.current, { q: defaultQuery, autoClose: autoClose });
   };
 
-  onError = () => {
+  onError = (e: unknown) => {
+    console.error(e);
     this.setState({ hasError: true });
   };
 
