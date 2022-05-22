@@ -1,12 +1,12 @@
 import React, { Component, createRef, CSSProperties } from 'react';
-import loadPostcode, { postcodeScriptUrl, ConstructorOptions } from './loadPostcode';
+import loadPostcode, { postcodeScriptUrl, PostcodeConstructor, PostcodeOptions } from './loadPostcode';
 
 export interface DaumPostcodeEmbedProps
-  extends Omit<ConstructorOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch' | 'width' | 'height'> {
-  onComplete?: ConstructorOptions['oncomplete'];
-  onResize?: ConstructorOptions['onresize'];
-  onClose?: ConstructorOptions['onclose'];
-  onSearch?: ConstructorOptions['onsearch'];
+  extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch' | 'width' | 'height'> {
+  onComplete?: PostcodeOptions['oncomplete'];
+  onResize?: PostcodeOptions['onresize'];
+  onClose?: PostcodeOptions['onclose'];
+  onSearch?: PostcodeOptions['onsearch'];
   className?: string;
   style?: CSSProperties;
   defaultQuery?: string;
@@ -16,9 +16,9 @@ export interface DaumPostcodeEmbedProps
 }
 /**
  * @deprecated
- * prop-type is renamed to 'DaumPostcodeEmbedProps'.
- * import 'DaumPostcodeEmbedProps' instead of 'DaumPostcodeProps'.
- * it will be remove next version.
+ * type 'DaumPostcodeProps' is renamed to 'DaumPostcodeEmbedProps'.
+ * use 'DaumPostcodeEmbedProps' instead of 'DaumPostcodeProps'.
+ * it will be removed future version.
  */
 export type DaumPostcodeProps = DaumPostcodeEmbedProps;
 
@@ -56,7 +56,7 @@ class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
     loadPostcode(scriptUrl).then(initiate).catch(onError);
   }
 
-  initiate = (Postcode: typeof window.daum.Postcode) => {
+  initiate = (Postcode: PostcodeConstructor) => {
     if (!this.wrap.current) return;
     const { scriptUrl, className, style, defaultQuery, autoClose, errorMessage, onComplete, onClose, onResize, onSearch, ...options } =
       this.props;
@@ -77,7 +77,8 @@ class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
     postcode.embed(this.wrap.current, { q: defaultQuery, autoClose: autoClose });
   };
 
-  onError = () => {
+  onError = (e: unknown) => {
+    console.error(e);
     this.setState({ hasError: true });
   };
 

@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    daum: {
+    daum?: {
       postcode: {
         load: (fn: () => void) => void;
         version: string;
@@ -73,7 +73,7 @@ export interface Theme {
   outlineColor?: string;
 }
 
-export interface ConstructorOptions {
+export interface PostcodeOptions {
   oncomplete?: (address: Address) => void;
   onresize?: (size: Size) => void;
   onclose?: (state: State) => void;
@@ -114,59 +114,40 @@ export interface EmbedOptions {
   autoClose?: boolean;
 }
 
+export interface PostcodeConstructor {
+  new (postcodeOptions: PostcodeOptions): Postcode;
+}
+
 export interface Postcode {
   open(openOptions?: OpenOptions): void;
   embed(element: HTMLElement, embedOptions?: EmbedOptions): void;
 }
 
-export interface PostcodeConstructor {
-  new (constructorOptions: ConstructorOptions): Postcode;
-}
-
-const promiseQueue = (function () {
-  const queue: Array<[(value: PostcodeConstructor) => void, (error: unknown) => void]> = [];
-  const enqueue = queue.push.bind(queue);
-  const dequeue = () => queue.shift() ?? [];
-  const resolveAll = (value: PostcodeConstructor) => {
-    while (queue.length) {
-      const [resolve] = dequeue();
-      resolve?.(value);
-    }
-  };
-  const rejectAll = (value: unknown) => {
-    while (queue.length) {
-      const [_, reject] = dequeue();
-      reject?.(value);
-    }
-  };
-  return { enqueue, resolveAll, rejectAll };
-})();
-
 export const postcodeScriptUrl = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
 
-const scriptId = 'daum_postcode_script';
+const loadPostcode = (function () {
+  const scriptId = 'daum_postcode_script';
+  let promise: Promise<PostcodeConstructor> | null = null;
 
-const loadPostcode = (url: string = postcodeScriptUrl): Promise<typeof window.daum.Postcode> => {
-  if (window.daum && window.daum.Postcode) {
-    return Promise.resolve(window.daum.Postcode);
-  }
-  if (!document.getElementById(scriptId)) {
-    const script = document.createElement('script');
-    script.src = url;
-    script.id = scriptId;
-    script.onload = () => {
-      try {
-        promiseQueue.resolveAll(window.daum.Postcode);
-      } catch (e) {
-        promiseQueue.rejectAll(e);
-      }
-    };
-    script.onerror = (error) => promiseQueue.rejectAll(error);
-    document.body.appendChild(script);
-  }
-  return new Promise<PostcodeConstructor>((resolve, reject) => {
-    promiseQueue.enqueue([resolve, reject]);
-  });
-};
+  return function (url: string = postcodeScriptUrl): Promise<PostcodeConstructor> {
+    if( promise ) return promise;
+
+    promise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = url;
+      script.onload = () => {
+        if( window?.daum?.Postcode ) {
+          return resolve(window.daum.Postcode);
+        }
+        reject(new Error('Script is loaded successfully, but cannot find Postcode module. Check your scriptURL property.'))
+      };
+      script.onerror = (error) => reject(error);
+      script.id = scriptId;
+      document.body.appendChild(script);
+    })
+
+    return promise;
+  };
+})();
 
 export default loadPostcode;
