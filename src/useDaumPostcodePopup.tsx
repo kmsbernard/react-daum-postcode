@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 
 import loadPostcode, { PostcodeOptions, OpenOptions, postcodeScriptUrl } from './loadPostcode';
 
-export type PopupOptions = Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> &
+export type DaumPostcodePopupParams = Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> &
   Omit<OpenOptions, 'q'> & {
     onComplete?: PostcodeOptions['oncomplete'];
     onResize?: PostcodeOptions['onresize'];
@@ -18,7 +18,7 @@ function useDaumPostcodePopup(scriptUrl = postcodeScriptUrl) {
   }, [scriptUrl]);
 
   const open = useCallback(
-    (options?: PopupOptions) => {
+    (options?: DaumPostcodePopupParams) => {
       const { defaultQuery, left, top, popupKey, popupTitle, autoClose, onComplete, onResize, onClose, onSearch, onError, ...others } = {
         ...options,
       };
