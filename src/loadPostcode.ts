@@ -1,12 +1,12 @@
 declare global {
   interface Window {
     daum?: {
-      postcode?: {
+      postcode: {
         load: (fn: () => void) => void;
         version: string;
         _validParam_: boolean;
       };
-      Postcode?: PostcodeConstructor;
+      Postcode: PostcodeConstructor;
     };
   }
 }
@@ -84,6 +84,8 @@ export interface PostcodeOptions {
   focusInput?: boolean;
   focusContent?: boolean;
   autoMapping?: boolean;
+  autoMappingRoad?: boolean;
+  autoMappingJibun?: boolean;
   shorthand?: boolean;
   pleaseReadGuide?: number;
   pleaseReadGuideTimer?: number;
@@ -121,11 +123,13 @@ export interface Postcode {
   embed(element: HTMLElement, embedOptions?: EmbedOptions): void;
 }
 
+export const postcodeScriptUrl = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+
 const loadPostcode = (function () {
   const scriptId = 'daum_postcode_script';
   let promise: Promise<PostcodeConstructor> | null = null;
 
-  return function (url: string): Promise<PostcodeConstructor> {
+  return function (url: string = postcodeScriptUrl): Promise<PostcodeConstructor> {
     if( promise ) return promise;
 
     promise = new Promise((resolve, reject) => {

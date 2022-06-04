@@ -1,7 +1,8 @@
 import React, { Component, createRef, CSSProperties } from 'react';
-import loadPostcode, { PostcodeConstructor, PostcodeOptions } from './loadPostcode';
+import loadPostcode, { postcodeScriptUrl, PostcodeConstructor, PostcodeOptions } from './loadPostcode';
 
-export interface DaumPostcodeProps extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> {
+export interface DaumPostcodeEmbedProps
+  extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch' | 'width' | 'height'> {
   onComplete?: PostcodeOptions['oncomplete'];
   onResize?: PostcodeOptions['onresize'];
   onClose?: PostcodeOptions['onclose'];
@@ -13,6 +14,13 @@ export interface DaumPostcodeProps extends Omit<PostcodeOptions, 'oncomplete' | 
   scriptUrl?: string;
   autoClose?: boolean;
 }
+/**
+ * @deprecated
+ * type 'DaumPostcodeProps' is renamed to 'DaumPostcodeEmbedProps'.
+ * use 'DaumPostcodeEmbedProps' instead of 'DaumPostcodeProps'.
+ * it will be removed future version.
+ */
+export type DaumPostcodeProps = DaumPostcodeEmbedProps;
 
 interface State {
   hasError: boolean;
@@ -26,12 +34,12 @@ const defaultStyle = {
 };
 
 const defaultProps = {
-  scriptUrl: 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js',
+  scriptUrl: postcodeScriptUrl,
   errorMessage: defaultErrorMessage,
   autoClose: true,
 };
 
-class DaumPostcode extends Component<DaumPostcodeProps, State> {
+class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
   static defaultProps = defaultProps;
 
   wrap = createRef<HTMLDivElement>();
@@ -50,21 +58,8 @@ class DaumPostcode extends Component<DaumPostcodeProps, State> {
 
   initiate = (Postcode: PostcodeConstructor) => {
     if (!this.wrap.current) return;
-    const {
-      scriptUrl,
-      className,
-      style,
-      defaultQuery,
-      autoClose,
-      errorMessage,
-      width,
-      height,
-      onComplete,
-      onClose,
-      onResize,
-      onSearch,
-      ...options
-    } = this.props;
+    const { scriptUrl, className, style, defaultQuery, autoClose, errorMessage, onComplete, onClose, onResize, onSearch, ...options } =
+      this.props;
 
     const postcode = new Postcode({
       ...options,
@@ -99,4 +94,4 @@ class DaumPostcode extends Component<DaumPostcodeProps, State> {
   }
 }
 
-export default DaumPostcode;
+export default DaumPostcodeEmbed;

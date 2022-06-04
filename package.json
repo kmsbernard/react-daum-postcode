@@ -1,7 +1,7 @@
 {
   "name": "react-daum-postcode",
   "version": "3.0.3",
-  "description": "React daum-postcode component",
+  "description": "Daum Postcode service for React",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [
@@ -53,6 +53,7 @@
   },
   "keywords": [
     "react",
+    "daum",
     "postcode",
     "zipcode"
   ],
