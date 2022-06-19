@@ -4,10 +4,15 @@ Daum 우편번호 검색 서비스를 React 환경에서 간편하게 이용할 
 
 ## Install
 
-```shell
-npm install --save react-daum-postcode
-// or
+```bash
+npm install react-daum-postcode
+# or
 yarn add react-daum-postcode
+
+# if react not installed, install react also.
+npm install react
+# or
+yarn add react
 ```
 
 ## Embed
