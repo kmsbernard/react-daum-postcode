@@ -37,7 +37,7 @@ interface State {
  * [작성자][작업일시] - 내용
  * [HK1211][2023-05-28 Sunday 00:48:08] - 최초작성
  */
-let mount = false;
+
 const defaultErrorMessage = <p>현재 Daum 우편번호 서비스를 이용할 수 없습니다. 잠시 후 다시 시도해주세요.</p>;
 
 const defaultStyle = {
@@ -53,6 +53,7 @@ const defaultProps = {
 
 class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
   static defaultProps = defaultProps;
+  private mount = false;
 
   wrap = createRef<HTMLDivElement>();
 
@@ -65,8 +66,8 @@ class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
     const { scriptUrl } = this.props;
 
     if (!scriptUrl) return;
-    if (!mount) {
-      mount = true; // react@18 부터 development 환경에서 React.StrictMode 사용시 출력되는 문제해결.
+    if (!this.mount) {
+      this.mount = true; // react@18 부터 development 환경에서 React.StrictMode 사용시 출력되는 문제해결.
       loadPostcode(scriptUrl).then(initiate).catch(onError);
     }
   }
