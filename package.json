@@ -1,6 +1,6 @@
 {
   "name": "react-daum-postcode",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Daum Postcode service for React",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -45,6 +45,10 @@
     {
       "name": "TaeSang Cho",
       "url": "https://github.com/Web-Engine"
+    },
+    {
+      "name": "HK1211",
+      "url": "https://github.com/HK1211"
     }
   ],
   "repository": {
