@@ -79,6 +79,7 @@ export interface PostcodeOptions {
   onclose?: (state: State) => void;
   onsearch?: (search: Search) => void;
   width?: string | number;
+  minWidth?: number;
   height?: string | number;
   animation?: boolean;
   focusInput?: boolean;
