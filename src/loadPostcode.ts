@@ -130,21 +130,21 @@ const loadPostcode = (function () {
   let promise: Promise<PostcodeConstructor> | null = null;
 
   return function (url: string = postcodeScriptUrl): Promise<PostcodeConstructor> {
-    if( promise ) return promise;
+    if (promise) return promise;
 
     promise = new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = url;
       script.onload = () => {
-        if( window?.daum?.Postcode ) {
+        if (window?.daum?.Postcode) {
           return resolve(window.daum.Postcode);
         }
-        reject(new Error('Script is loaded successfully, but cannot find Postcode module. Check your scriptURL property.'))
+        reject(new Error('Script is loaded successfully, but cannot find Postcode module. Check your scriptURL property.'));
       };
       script.onerror = (error) => reject(error);
       script.id = scriptId;
       document.body.appendChild(script);
-    })
+    });
 
     return promise;
   };
