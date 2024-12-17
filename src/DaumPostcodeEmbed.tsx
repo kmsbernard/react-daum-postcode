@@ -24,6 +24,7 @@ export type DaumPostcodeProps = DaumPostcodeEmbedProps;
 
 interface State {
   hasError: boolean;
+  completed: boolean;
 }
 
 const defaultErrorMessage = <p>현재 Daum 우편번호 서비스를 이용할 수 없습니다. 잠시 후 다시 시도해주세요.</p>;
@@ -50,6 +51,7 @@ class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
 
   state = {
     hasError: false,
+    completed: false,
   };
 
   componentDidMount() {
@@ -72,7 +74,7 @@ class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
       ...options,
       oncomplete: (address) => {
         if (onComplete) onComplete(address);
-        if (autoClose && this.wrap.current) this.wrap.current.remove();
+        this.setState({ completed: true });
       },
       onsearch: onSearch,
       onresize: onResize,
@@ -90,8 +92,10 @@ class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
   };
 
   render() {
-    const { className, style, errorMessage } = this.props;
-    const { hasError } = this.state;
+    const { className, style, errorMessage, autoClose } = this.props;
+    const { hasError, completed } = this.state;
+
+    if (autoClose === true && completed === true) return null;
 
     return (
       <div ref={this.wrap} className={className} style={{ ...defaultStyle, ...style }}>
