@@ -2,7 +2,6 @@
   "presets": [
     "@babel/preset-react",
     "@babel/preset-typescript",
-    ["@babel/preset-env", { "targets": "defaults" }],
-    "babel-preset-minify"
+    ["@babel/preset-env", { "targets": "defaults" }]
   ]
 }
