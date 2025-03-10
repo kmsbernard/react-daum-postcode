@@ -1,8 +1,9 @@
 import React, { Component, createRef, CSSProperties } from 'react';
-import loadPostcode, { postcodeScriptUrl, PostcodeConstructor, PostcodeOptions } from './loadPostcode';
+import loadPostcode, { postcodeScriptUrl, PostcodeConstructor, PostcodeOptions, EmbedOptions } from './loadPostcode';
 
 export interface DaumPostcodeEmbedProps
-  extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch' | 'width' | 'height'> {
+  extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch' | 'width' | 'height'>,
+    Omit<EmbedOptions, 'q'> {
   onComplete?: PostcodeOptions['oncomplete'];
   onResize?: PostcodeOptions['onresize'];
   onClose?: PostcodeOptions['onclose'];
@@ -12,7 +13,6 @@ export interface DaumPostcodeEmbedProps
   defaultQuery?: string;
   errorMessage?: string | React.ReactNode;
   scriptUrl?: string;
-  autoClose?: boolean;
 }
 /**
  * @deprecated
