@@ -1,12 +1,12 @@
-import DaumPostcodeEmbed from './DaumPostcodeEmbed';
+import KakaoPostcodeEmbed from './KakaoPostcodeEmbed';
 import useDaumPostcodePopup from './useDaumPostcodePopup';
 import loadPostcode from './loadPostcode';
 
-export { loadPostcode, DaumPostcodeEmbed, useDaumPostcodePopup };
-export default DaumPostcodeEmbed;
+export { loadPostcode, KakaoPostcodeEmbed, useDaumPostcodePopup };
+export default KakaoPostcodeEmbed;
 
-import type { DaumPostcodeEmbedProps } from './DaumPostcodeEmbed';
+import type { KakaoPostcodeEmbedProps } from './KakaoPostcodeEmbed';
 import type { DaumPostcodePopupParams } from './useDaumPostcodePopup';
 import type { Address, Search, State } from './loadPostcode';
 
-export type { DaumPostcodeEmbedProps, DaumPostcodePopupParams, Address, Search, State };
+export type { KakaoPostcodeEmbedProps, DaumPostcodePopupParams, Address, Search, State };
