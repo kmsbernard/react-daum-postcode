@@ -49,7 +49,7 @@ const Postcode = () => {
 
 | name | type | default | description
 |:----:|:----:|:-------:|:-----------|
-| scriptUrl | `string` | [CURRENT_URL](https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js) | Daum 우편번호 서비스의 스크립트 주소입니다.|
+| scriptUrl | `string` | [CURRENT_URL](https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js) | Daum 우편번호 서비스의 스크립트 주소입니다.|
 | onComplete | `function` | `undefined` | 우편번호 검색이 끝났을 때 사용자가 선택한 정보를 받아올 콜백함수입니다. 주소 데이터의 구성은 [Daum 가이드](http://postcode.map.daum.net/guide)를 참고해주세요. |
 | onSearch | `function` | `undefined` | 주소를 검색할 경우 실행되는 콜백함수입니다. 검색 결과 정보의 구성은 [Daum 가이드](http://postcode.map.daum.net/guide)를 참고해주세요. |
 | onClose | `function` | `undefined` | 검색 결과를 선택하여, 서비스가 닫힐 때 실행되는 콜백함수입니다. |
@@ -106,7 +106,7 @@ const Postcode = () => {
 
 | name | type | default | description
 |:----:|:----:|:-------:|:-----------|
-| scriptUrl | `string` | [CURRENT_URL](https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js) | Daum 우편번호 서비스의 스크립트 주소입니다.|
+| scriptUrl | `string` | [CURRENT_URL](https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js) | Daum 우편번호 서비스의 스크립트 주소입니다.|
 | onComplete | `function` | `undefined` | 우편번호 검색이 끝났을 때 사용자가 선택한 정보를 받아올 콜백함수입니다. 주소 데이터의 구성은 [Daum 가이드](http://postcode.map.daum.net/guide)를 참고해주세요. |
 | onSearch | `function` | `undefined` | 주소를 검색할 경우 실행되는 콜백함수입니다. 검색 결과 정보의 구성은 [Daum 가이드](http://postcode.map.daum.net/guide)를 참고해주세요. |
 | onClose | `function` | `undefined` | 검색 결과를 선택하여, 서비스가 닫힐 때 실행되는 콜백함수입니다. |

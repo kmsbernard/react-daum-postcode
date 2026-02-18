@@ -8,6 +8,14 @@ declare global {
       };
       Postcode: PostcodeConstructor;
     };
+    kakao?: {
+      postcode: {
+        load: (fn: () => void) => void;
+        version: string;
+        _validParam_: boolean;
+      };
+      Postcode: PostcodeConstructor;
+    };
   }
 }
 
@@ -124,10 +132,10 @@ export interface Postcode {
   embed(element: HTMLElement, embedOptions?: EmbedOptions): void;
 }
 
-export const postcodeScriptUrl = 'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+export const postcodeScriptUrl = 'https://t1.kakaocdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
 
 const loadPostcode = (function () {
-  const scriptId = 'daum_postcode_script';
+  const scriptId = 'kakao_postcode_script';
   let promise: Promise<PostcodeConstructor> | null = null;
 
   return function (url: string = postcodeScriptUrl): Promise<PostcodeConstructor> {
@@ -137,8 +145,9 @@ const loadPostcode = (function () {
       const script = document.createElement('script');
       script.src = url;
       script.onload = () => {
-        if (window?.daum?.Postcode) {
-          return resolve(window.daum.Postcode);
+        const PostcodeConstructor = window?.kakao?.Postcode ?? window?.daum?.Postcode;
+        if (PostcodeConstructor) {
+          return resolve(PostcodeConstructor);
         }
         reject(new Error('Script is loaded successfully, but cannot find Postcode module. Check your scriptURL property.'));
       };
