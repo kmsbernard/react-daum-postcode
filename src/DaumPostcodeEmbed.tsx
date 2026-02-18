@@ -14,13 +14,6 @@ export interface DaumPostcodeEmbedProps
   errorMessage?: string | React.ReactNode;
   scriptUrl?: string;
 }
-/**
- * @deprecated
- * type 'DaumPostcodeProps' is renamed to 'DaumPostcodeEmbedProps'.
- * use 'DaumPostcodeEmbedProps' instead of 'DaumPostcodeProps'.
- * it will be removed future version.
- */
-export type DaumPostcodeProps = DaumPostcodeEmbedProps;
 
 interface State {
   hasError: boolean;
