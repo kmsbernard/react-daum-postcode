@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 
 import loadPostcode, { PostcodeOptions, OpenOptions, postcodeScriptUrl } from './loadPostcode';
 
-export type DaumPostcodePopupParams = Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> &
+export type KakaoPostcodePopupParams = Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch'> &
   Omit<OpenOptions, 'q'> & {
     onComplete?: PostcodeOptions['oncomplete'];
     onResize?: PostcodeOptions['onresize'];
@@ -12,13 +12,13 @@ export type DaumPostcodePopupParams = Omit<PostcodeOptions, 'oncomplete' | 'onre
     defaultQuery?: string;
   };
 
-function useDaumPostcodePopup(scriptUrl = postcodeScriptUrl) {
+function useKakaoPostcodePopup(scriptUrl = postcodeScriptUrl) {
   useEffect(() => {
     loadPostcode(scriptUrl);
   }, [scriptUrl]);
 
   const open = useCallback(
-    (options?: DaumPostcodePopupParams) => {
+    (options?: KakaoPostcodePopupParams) => {
       const { defaultQuery, left, top, popupKey, popupTitle, autoClose, onComplete, onResize, onClose, onSearch, onError, ...others } = {
         ...options,
       };
@@ -42,4 +42,4 @@ function useDaumPostcodePopup(scriptUrl = postcodeScriptUrl) {
   return open;
 }
 
-export default useDaumPostcodePopup;
+export default useKakaoPostcodePopup;
