@@ -1,7 +1,7 @@
 {
   "name": "react-daum-postcode",
   "version": "3.2.0",
-  "description": "Daum Postcode service for React",
+  "description": "Kakao(prev: Daum) Postcode service for React",
   "main": "./lib/index.cjs.js",
   "types": "./lib/index.d.ts",
   "module": "./lib/index.esm.js",
@@ -57,6 +57,7 @@
   "keywords": [
     "react",
     "daum",
+    "kakao",
     "postcode",
     "zipcode"
   ],
