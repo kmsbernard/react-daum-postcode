@@ -1,11 +1,17 @@
 declare global {
   interface Window {
     daum?: {
+      /**
+       * @deprecated Use kakao.postcode instead.
+       */
       postcode: {
         load: (fn: () => void) => void;
         version: string;
         _validParam_: boolean;
       };
+      /**
+       * @deprecated Use kakao.postcode instead.
+       */
       Postcode: PostcodeConstructor;
     };
     kakao?: {

@@ -1,7 +1,7 @@
 import React, { Component, createRef, CSSProperties } from 'react';
 import loadPostcode, { postcodeScriptUrl, PostcodeConstructor, PostcodeOptions, EmbedOptions } from './loadPostcode';
 
-export interface DaumPostcodeEmbedProps
+export interface KakaoPostcodeEmbedProps
   extends Omit<PostcodeOptions, 'oncomplete' | 'onresize' | 'onclose' | 'onsearch' | 'width' | 'height'>,
     Omit<EmbedOptions, 'q'> {
   onComplete?: PostcodeOptions['oncomplete'];
@@ -14,20 +14,13 @@ export interface DaumPostcodeEmbedProps
   errorMessage?: string | React.ReactNode;
   scriptUrl?: string;
 }
-/**
- * @deprecated
- * type 'DaumPostcodeProps' is renamed to 'DaumPostcodeEmbedProps'.
- * use 'DaumPostcodeEmbedProps' instead of 'DaumPostcodeProps'.
- * it will be removed future version.
- */
-export type DaumPostcodeProps = DaumPostcodeEmbedProps;
 
 interface State {
   hasError: boolean;
   completed: boolean;
 }
 
-const defaultErrorMessage = <p>현재 Daum 우편번호 서비스를 이용할 수 없습니다. 잠시 후 다시 시도해주세요.</p>;
+const defaultErrorMessage = <p>현재 Kakao 우편번호 서비스를 이용할 수 없습니다. 잠시 후 다시 시도해주세요.</p>;
 
 const defaultStyle = {
   width: '100%',
@@ -40,7 +33,7 @@ const defaultProps = {
   autoClose: true,
 };
 
-class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
+class KakaoPostcodeEmbed extends Component<KakaoPostcodeEmbedProps, State> {
   static defaultProps = defaultProps;
   /**
    * See #61
@@ -105,4 +98,4 @@ class DaumPostcodeEmbed extends Component<DaumPostcodeEmbedProps, State> {
   }
 }
 
-export default DaumPostcodeEmbed;
+export default KakaoPostcodeEmbed;
